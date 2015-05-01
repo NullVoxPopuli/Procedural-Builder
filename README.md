@@ -13,3 +13,6 @@ generator.Add(generationParameters);
 GenericObject generatedObject = generator.Build();
 
 ```
+
+## Fantasy World
+"Fantasy World" is an extension provided as an example for PGE's capabilities. It is my attempt to procedurally generate fantasy worlds complete with vibrant histories. Characters in this world will be capable of adapting to their environments, civilizations will fall into ruins from diseases and war, and so on and so forth. This is fairly ambitious but I think it will be a lot of fun.
