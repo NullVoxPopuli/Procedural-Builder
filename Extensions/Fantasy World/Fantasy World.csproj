@@ -45,8 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lifeforms\Objects\Humanoid.cs" />
-    <Compile Include="Lifeforms\Generation Parameters\HumanoidGenerationParameters.cs" />
+    <Compile Include="Lifeforms\Macro\Objects\Humanoid.cs" />
+    <Compile Include="Lifeforms\Macro\Generation Parameters\HumanoidGenerationParameters.cs" />
+    <Compile Include="Lifeforms\Micro\Objects\Trait.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Civilization\Buildings\Generation Parameters\ReligiousBuildingGenerationParameters.cs" />
     <Compile Include="Civilization\Buildings\Generation Parameters\ResidenceGenerationParameters.cs" />
@@ -75,7 +76,9 @@
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Lifeforms\Micro\Generation Parameters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
