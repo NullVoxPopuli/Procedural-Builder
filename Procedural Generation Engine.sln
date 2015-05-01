@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{4EA38BCF-D7D8-4234-8C6A-0EF129837022}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generator Core Tests", "Test\Core\Generator Core Tests.csproj", "{71D65902-2FF3-4B0E-8700-98FD4EB6D0DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantasy World", "Extensions\Fantasy World\Fantasy World.csproj", "{3EE5BD46-9C70-4F88-A918-1F68843CA122}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantasy World Tests", "Test\Fantasy World\Fantasy World Tests.csproj", "{F7A9C350-3AE8-4C46-A490-69D1C200F78B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{5C079FC9-6B6F-4AA2-BABB-FD10F22B380F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D3111C2C-01DA-48A1-8030-B8F184C733BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Core Debug|Any CPU = Core Debug|Any CPU
+		Core Release|Any CPU = Core Release|Any CPU
+		Fantasy World Debug|Any CPU = Fantasy World Debug|Any CPU
+		Fantasy World Release|Any CPU = Fantasy World Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EA38BCF-D7D8-4234-8C6A-0EF129837022}.Core Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EA38BCF-D7D8-4234-8C6A-0EF129837022}.Core Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EA38BCF-D7D8-4234-8C6A-0EF129837022}.Core Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EA38BCF-D7D8-4234-8C6A-0EF129837022}.Core Release|Any CPU.Build.0 = Release|Any CPU
+		{4EA38BCF-D7D8-4234-8C6A-0EF129837022}.Fantasy World Debug|Any CPU.ActiveCfg = Fantasy World Debug|Any CPU
+		{4EA38BCF-D7D8-4234-8C6A-0EF129837022}.Fantasy World Debug|Any CPU.Build.0 = Fantasy World Debug|Any CPU
+		{4EA38BCF-D7D8-4234-8C6A-0EF129837022}.Fantasy World Release|Any CPU.ActiveCfg = Fantasy World Release|Any CPU
+		{4EA38BCF-D7D8-4234-8C6A-0EF129837022}.Fantasy World Release|Any CPU.Build.0 = Fantasy World Release|Any CPU
+		{71D65902-2FF3-4B0E-8700-98FD4EB6D0DB}.Core Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D65902-2FF3-4B0E-8700-98FD4EB6D0DB}.Core Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D65902-2FF3-4B0E-8700-98FD4EB6D0DB}.Core Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D65902-2FF3-4B0E-8700-98FD4EB6D0DB}.Fantasy World Debug|Any CPU.ActiveCfg = Fantasy World Debug|Any CPU
+		{71D65902-2FF3-4B0E-8700-98FD4EB6D0DB}.Fantasy World Release|Any CPU.ActiveCfg = Fantasy World Release|Any CPU
+		{3EE5BD46-9C70-4F88-A918-1F68843CA122}.Core Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EE5BD46-9C70-4F88-A918-1F68843CA122}.Core Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EE5BD46-9C70-4F88-A918-1F68843CA122}.Fantasy World Debug|Any CPU.ActiveCfg = Fantasy World Debug|Any CPU
+		{3EE5BD46-9C70-4F88-A918-1F68843CA122}.Fantasy World Debug|Any CPU.Build.0 = Fantasy World Debug|Any CPU
+		{3EE5BD46-9C70-4F88-A918-1F68843CA122}.Fantasy World Release|Any CPU.ActiveCfg = Fantasy World Release|Any CPU
+		{3EE5BD46-9C70-4F88-A918-1F68843CA122}.Fantasy World Release|Any CPU.Build.0 = Fantasy World Release|Any CPU
+		{F7A9C350-3AE8-4C46-A490-69D1C200F78B}.Core Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A9C350-3AE8-4C46-A490-69D1C200F78B}.Core Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A9C350-3AE8-4C46-A490-69D1C200F78B}.Fantasy World Debug|Any CPU.ActiveCfg = Fantasy World Debug|Any CPU
+		{F7A9C350-3AE8-4C46-A490-69D1C200F78B}.Fantasy World Debug|Any CPU.Build.0 = Fantasy World Debug|Any CPU
+		{F7A9C350-3AE8-4C46-A490-69D1C200F78B}.Fantasy World Release|Any CPU.ActiveCfg = Fantasy World Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{71D65902-2FF3-4B0E-8700-98FD4EB6D0DB} = {D3111C2C-01DA-48A1-8030-B8F184C733BE}
+		{3EE5BD46-9C70-4F88-A918-1F68843CA122} = {5C079FC9-6B6F-4AA2-BABB-FD10F22B380F}
+		{F7A9C350-3AE8-4C46-A490-69D1C200F78B} = {D3111C2C-01DA-48A1-8030-B8F184C733BE}
+	EndGlobalSection
+EndGlobal
