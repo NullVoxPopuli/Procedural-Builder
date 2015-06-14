@@ -27,7 +27,7 @@ namespace PGE.Core.Generator
 
             if (_generationParameters != null)
             {
-                _generationParameters.ApplyParameters(generated as IGeneratable);
+                _generationParameters.ApplyParameters(generated as AbstractGeneratableObject);
             }
             return generated;
         }

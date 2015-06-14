@@ -6,7 +6,7 @@ namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
 {
     public class TavernGenerationParameters : GenericBuildingGenerationParameters
     {
-        public override void ApplyParameters(IGeneratable gen)
+        public override void ApplyParameters(AbstractGeneratableObject gen)
         {
             base.ApplyParameters(gen);
         }

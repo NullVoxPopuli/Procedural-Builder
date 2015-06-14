@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generated Items\Generated.cs" />
+    <Compile Include="Generated Items\AbstractGeneratableObject.cs" />
     <Compile Include="Generated Items\GenerationParameters.cs" />
     <Compile Include="Generator\Generator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

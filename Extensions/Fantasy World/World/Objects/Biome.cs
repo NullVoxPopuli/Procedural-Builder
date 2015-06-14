@@ -2,7 +2,8 @@
 
 namespace PGE.Fantasy_World.World.Objects
 {
-    public class Biome : IGeneratable
+    public class Biome : AbstractGeneratableObject
     {
+        // A subset of a continent
     }
 }

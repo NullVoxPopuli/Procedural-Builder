@@ -6,7 +6,7 @@ namespace PGE.Fantasy_World.Civilization.Macro.Generation_Parameters
     {
         private int _population = -1;
 
-        public override void ApplyParameters(IGeneratable gen)
+        public override void ApplyParameters(AbstractGeneratableObject gen)
         {
             Generated = gen;
             ApplyPopulation();

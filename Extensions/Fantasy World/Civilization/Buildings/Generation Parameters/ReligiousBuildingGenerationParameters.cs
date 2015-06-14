@@ -9,7 +9,7 @@ namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
     {
         private string _patron;
 
-        public override void ApplyParameters(IGeneratable gen)
+        public override void ApplyParameters(AbstractGeneratableObject gen)
         {
             base.ApplyParameters(gen);
 

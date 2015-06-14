@@ -2,9 +2,9 @@
 {
     public abstract class GenerationParameters
     {
-        protected IGeneratable Generated;
+        protected AbstractGeneratableObject Generated;
 
-        public virtual void ApplyParameters(IGeneratable gen)
+        public virtual void ApplyParameters(AbstractGeneratableObject gen)
         {
             Generated = gen;
         }

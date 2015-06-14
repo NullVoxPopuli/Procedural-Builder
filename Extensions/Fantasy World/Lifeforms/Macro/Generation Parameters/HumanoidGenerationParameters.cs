@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using PGE.Core.Generated_Items;
 using PGE.Core.Statistics;
+using PGE.Fantasy_World.Lifeforms.Micro.Objects;
 using PGE.Fantasy_World.Lifeforms.Objects;
 
 namespace PGE.Fantasy_World.Lifeforms.Generation_Parameters
@@ -18,7 +19,14 @@ namespace PGE.Fantasy_World.Lifeforms.Generation_Parameters
             _numberOfTraits = 1,
             _numberOfFlaws = 1;
 
+        private List<Trait> _traits = new List<Trait>(); 
+
         #region Setters
+        public void AddTrait(Trait trait)
+        {
+            _traits.Add(trait);
+        }
+
         public void SetNumberOfIdeals(int num)
         {
             _numberOfIdeals = num;
@@ -60,7 +68,7 @@ namespace PGE.Fantasy_World.Lifeforms.Generation_Parameters
         }
         #endregion
 
-        public override void ApplyParameters(IGeneratable gen)
+        public override void ApplyParameters(AbstractGeneratableObject gen)
         {
             Generated = gen;
 
@@ -73,6 +81,12 @@ namespace PGE.Fantasy_World.Lifeforms.Generation_Parameters
             GenerateInteractionTraits();
             GenerateBonds();
             GenerateFlawsAndSecrets();
+
+            ((Humanoid) gen).Traits = new List<Trait>();
+            if (_traits != null)
+            {
+                ((Humanoid) gen).Traits.AddRange(_traits);
+            }
         }
 
         private void GenerateName()

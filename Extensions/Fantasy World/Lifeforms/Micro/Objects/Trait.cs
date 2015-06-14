@@ -9,7 +9,7 @@ using PGE.Fantasy_World.Lifeforms.Objects;
 namespace PGE.Fantasy_World.Lifeforms.Micro.Objects
 {
     // Describes an effect to a lifeform
-    public class Trait : IGeneratable
+    public class Trait : AbstractGeneratableObject
     {
         public HereditaryType HereditaryNature;
         public double EffectStrength;

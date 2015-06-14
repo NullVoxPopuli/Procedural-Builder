@@ -11,7 +11,7 @@ namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
         private Humanoid _owner;
         protected string BuildingType, Name;
 
-        public override void ApplyParameters(IGeneratable gen)
+        public override void ApplyParameters(AbstractGeneratableObject gen)
         {
             Generated = gen;
 
