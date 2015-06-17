@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Configuration;
 using System.Text.RegularExpressions;
@@ -241,17 +242,23 @@ namespace PGE.Fantasy_World.Lifeforms.Generation_Parameters
 
         private void GenerateHeight()
         {
-            ((Humanoid)Generated).Height = 0; // Need a way to work with Standard Deviation here
+            ((Humanoid)Generated).Height = Gaussian.GetGaussianRandom(
+                mean: 176.5,
+                standardDeviation: 7.8);
         }
 
         private void GenerateBodyFat()
         {
-            ((Humanoid) Generated).BodyFat = 0; // Need a way to work with Standard Deviation here
+            ((Humanoid)Generated).BodyFat = Gaussian.GetGaussianRandom(
+                mean: 20.3,
+                standardDeviation: 7.1); 
         }
 
         private void GenerateSkinColor()
         {
-            ((Humanoid)Generated).SkinMelatoninDensity = Dice.Roll(100) / 100.0;
+            ((Humanoid)Generated).SkinMelatoninDensity = Gaussian.GetGaussianRandom(
+                mean: 0.5,
+                standardDeviation: 0.25); 
         }
 
         private void GenerateEyes()

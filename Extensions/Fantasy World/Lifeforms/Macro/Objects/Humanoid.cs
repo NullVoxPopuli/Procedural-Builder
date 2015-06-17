@@ -22,8 +22,8 @@ namespace PGE.Fantasy_World.Lifeforms.Objects
         public string Hair; // Includes Color AND Length
         public double SkinMelatoninDensity; // 0 == Completely Pale, 1 = Completely Dark
         public string EyeColor;
-        public int Height;
-        public int BodyFat; // In gross percentages (e.g. 12 or lower for athletic, 15 for average, 20 for obese, etc)
+        public double Height;
+        public double BodyFat; // In gross percentages (e.g. 12 or lower for athletic, 15 for average, 20 for obese, etc)
         public string Disfigurements; // Includes scars, missing teeth, etc; the only non-Genetic appearance trait
 
         public bool IsMale = false;

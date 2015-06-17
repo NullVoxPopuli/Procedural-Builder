@@ -50,6 +50,7 @@
     <Compile Include="Generator\Generator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Statistics\Dice.cs" />
+    <Compile Include="Statistics\Gaussian.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
