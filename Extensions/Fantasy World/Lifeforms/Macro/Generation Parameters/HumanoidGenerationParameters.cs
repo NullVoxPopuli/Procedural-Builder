@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text.RegularExpressions;
 using PGE.Core.Generated_Items;
 using PGE.Core.Statistics;
@@ -209,42 +210,99 @@ namespace PGE.Fantasy_World.Lifeforms.Generation_Parameters
 
         private void GenerateAppearance()
         {
-            var appearanceTable = new List<string>()
+            GenerateHair();
+            GenerateEyes();
+            GenerateSkinColor();
+            GenerateBodyFat();
+            GenerateHeight();
+            GenerateDisfigurements();
+        }
+
+        private void GenerateDisfigurements()
+        {
+            if (Dice.Roll(20) != 20) return;
+
+            var numberOfRolls = Dice.Roll(4);
+
+            var disfigurementTable = new List<string>()
             {
-                "Distinctive jewelry, earrings, necklace, circlet, bracelets",
-                "Piercings",
-                "Flamboyant or outlandish clothes",
-                "Formal, clean clothes",
-                "Ragged, dirty clothes",
-                "Pronounced scar",
-                "Missing teeth",
-                "Missing fingers",
-                "Unusual eye color",
-                "Tattoos",
-                "Birthmark",
-                "Unusual skin color",
-                "Bald",
-                "Braided beard or hair",
-                "Unusual beard or hair color",
-                "Nervous eye twitch",
-                "Distinctive nose",
-                "Distinctive posture",
-                "Exceptionally beautiful",
-                "Exceptionally ugly"
+                "Missing Finger or Toe",
+                "Scar",
+                "Missing Eye or Ear",
+                "Burns",
+                "Missing Teeth"
             };
 
-            var appearances = new List<string>();
-            for (var i = 0; i < _numberOfAppearanceTraits; i++)
+            for (var i = 0; i < numberOfRolls-1; i++)
             {
-                var appearance = Dice.RollOnTable(appearanceTable);
-
-                if (!appearances.Contains(appearance))
-                {
-                    appearances.Add(appearance);
-                }
+                ((Humanoid)Generated).Disfigurements += ", " + Dice.RollOnTable(disfigurementTable);
             }
+        }
 
-            ((Humanoid)Generated).Appearance = string.Join(", ", appearances);
+        private void GenerateHeight()
+        {
+            ((Humanoid)Generated).Height = 0; // Need a way to work with Standard Deviation here
+        }
+
+        private void GenerateBodyFat()
+        {
+            ((Humanoid) Generated).BodyFat = 0; // Need a way to work with Standard Deviation here
+        }
+
+        private void GenerateSkinColor()
+        {
+            ((Humanoid)Generated).SkinMelatoninDensity = Dice.Roll(100) / 100.0;
+        }
+
+        private void GenerateEyes()
+        {
+            var eyeColorTable = new List<string>()
+            {
+                "Brown",
+                "Black",
+                "Blue",
+                "Green",
+                "Grey",
+                "Heterochromia"
+            };
+            ((Humanoid) Generated).EyeColor = Dice.RollOnTable(eyeColorTable);
+        }
+
+        private void GenerateHair()
+        {
+            var hairColorTable = new List<string>()
+            {
+                "Brown",
+                "Black",
+                "Red",
+                "Blonde",
+                "Grey"
+            };
+            var femaleHairLengthTable = new List<string>()
+            {
+                "Short",
+                "Moderate",
+                "Long",
+                "Moderate",
+                "Long",
+                "Long"
+            };
+            var maleHairLengthTable = new List<string>()
+            {
+                "Bald",
+                "Bald",
+                "Short",
+                "Short",
+                "Short",
+                "Moderate",
+                "Moderate",
+                "Long"
+            };
+            var hairLength = ((Humanoid) Generated).IsMale
+                ? Dice.RollOnTable(maleHairLengthTable)
+                : Dice.RollOnTable(femaleHairLengthTable);
+            
+            ((Humanoid) Generated).Hair = hairLength + " " + Dice.RollOnTable(hairColorTable);
         }
 
         private void GenerateAbilities()
