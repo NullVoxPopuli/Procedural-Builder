@@ -71,7 +71,6 @@ namespace PGE.Fantasy_World.Tests
 
             Assert.IsNotNull(npc.Hair);
             Assert.IsNotNull(npc.EyeColor);
-            Assert.IsTrue(npc.SkinMelatoninDensity > 0 && npc.SkinMelatoninDensity <= 1);
         }
 
         [TestMethod]
