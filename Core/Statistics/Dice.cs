@@ -8,9 +8,21 @@ namespace PGE.Core.Statistics
     {
         private static readonly Random Rand = new Random();
 
-        public static int Roll(int numSides)
+        public static int Roll(int numberOfSides)
         {
-            return Rand.Next(numSides);
+            return Rand.Next(numberOfSides);
+        }
+
+        public static int Roll(int numberOfSides, int numberOfTimes)
+        {
+            var total = 0;
+
+            for (var i = 0; i < numberOfTimes; ++i)
+            {
+                total += Roll(numberOfSides);
+            }
+
+            return total;
         }
 
         public static bool PerformCheck(int modifier, int dc)

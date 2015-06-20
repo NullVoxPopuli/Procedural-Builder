@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using PGE.Core.Generated_Items;
+using PGE.Core.Generator;
+using PGE.Core.Statistics;
+using PGE.Fantasy_World.World.Generation_Parameters;
 
 namespace PGE.Fantasy_World.World.Objects
 {
@@ -14,8 +18,8 @@ namespace PGE.Fantasy_World.World.Objects
         // 0.0 being completely even with Earth's orbit
         // 1.0 being further than normal (like Mars)
         public double ProximityToSolarEntity = 0.0;
-        
-        // What season is it?
+
+        // What season is it? // TODO: move somewhere else, like biome
         public enum Season
         {
             Winter, Spring, Summer, Autumn
@@ -33,5 +37,25 @@ namespace PGE.Fantasy_World.World.Objects
         // 0.0 being where we are with the continents now on Earth
         // 1.0 being spread apart with each continent as its own island
         public double ContinentSpread;
+
+        public void GenerateContinents()
+        {
+            Continents = new List<Landmass>();
+
+            // This gives us 5 continents on average
+            var numberOfContinents = Dice.Roll(
+                numberOfSides: 4,
+                numberOfTimes: 2);
+
+            // Prepare the basic Build Parameters for the Landmasses using our statistics
+            var generator = new Generator<Landmass>();
+            var continentParams = new LandmassGenerationParameters();
+            generator.Add(continentParams);
+
+            for (var continentIndex = 0; continentIndex < numberOfContinents; ++continentIndex)
+            {
+                Continents.Add(generator.Build());
+            }
+        }
     }
 }
