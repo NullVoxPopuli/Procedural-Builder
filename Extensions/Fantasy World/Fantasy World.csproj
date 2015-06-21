@@ -63,11 +63,9 @@
     <Compile Include="Civilization\Buildings\Objects\Warehouse.cs" />
     <Compile Include="Civilization\Macro\Objects\Settlement.cs" />
     <Compile Include="Civilization\Macro\Generation Parameters\SettlementGenerationParameters.cs" />
-    <Compile Include="World\Generation Parameters\BiomeGenerationParameters.cs" />
     <Compile Include="World\Generation Parameters\LandmassGenerationParameters.cs" />
     <Compile Include="World\Generation Parameters\RegionGenerationParameters.cs" />
     <Compile Include="World\Generation Parameters\WorldGenerationParameters.cs" />
-    <Compile Include="World\Objects\Biome.cs" />
     <Compile Include="World\Objects\Landmass.cs" />
     <Compile Include="World\Objects\Region.cs" />
     <Compile Include="World\Objects\World.cs" />

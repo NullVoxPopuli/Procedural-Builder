@@ -13,16 +13,25 @@ namespace PGE.Fantasy_World.World.Objects
 {
     public class Region : AbstractGeneratableObject
     {
-        public Biome Environment;
         public List<Settlement> Settlements;
+
+        // Rate of precipitation
+        // Where -1.0 is the absence of rain and 1.0 is a constant monsoon
+        public double AverageRainfall;
+
+        // Wind amount
+        public double WindAmount;
+
+        // Heat Statistics
+        public double AverageTemperature;
+
+        // Where -1.0 is completely unstable
+        // 0.0 is standard seasons
+        // 1.0 is a single season
+        public double StabilityOfClimate;
 
         public void GenerateSettlements()
         {
-            var biomeGenerator = new Generator<Biome>();
-            var biomeParams = new BiomeGenerationParameters();
-            biomeGenerator.Add(biomeParams);
-            Environment = biomeGenerator.Build();
-
             // Prepare the basic Build Parameters for the Settlements using our statistics
             var settlementGenerator = new Generator<Settlement>();
             var settlementParams = new RegionGenerationParameters();

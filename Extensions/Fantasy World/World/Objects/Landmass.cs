@@ -22,6 +22,13 @@ namespace PGE.Fantasy_World.World.Objects
         // 1.0 = As many as <MaximumNumberOfRegions> Separate Regions
         public double RegionDiversity;
 
+        // Average Rainfall and Temperature for this continent; used to drive Biome Generation in Regions
+        // -1.0 == No Rain or Extremely Cold
+        // 0.0 is roughly equivalent to temperate climates
+        // 1.0 == Heavy, frequent rainfall; Extremely hot
+        public double AverageRainfall;
+        public double AverageTemperature;
+
         public void GenerateRegions()
         {
             var numberOfRegions = Dice.Roll((int)(MaximumNumberOfRegions * RegionDiversity));
@@ -33,6 +40,7 @@ namespace PGE.Fantasy_World.World.Objects
 
             for (var regionIndex = 0; regionIndex < numberOfRegions; ++regionIndex)
             {
+                // Specify the Region Parameters here (Rainfall, Temperature)
                 Regions.Add(generator.Build());
             }
         }

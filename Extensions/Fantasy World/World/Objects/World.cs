@@ -30,7 +30,8 @@ namespace PGE.Fantasy_World.World.Objects
         // -1.0 Much colder than normal
         // 0.0 even with Earth
         // 1.0 Much warmer than normal
-        public double RelativeTemperature;
+        public double GlobalAverageRainfall;
+        public double GlobalAverageTemperature;
 
         // How do the continents connect?
         // -1.0 being completely together, like Pangea
@@ -54,6 +55,11 @@ namespace PGE.Fantasy_World.World.Objects
 
             for (var continentIndex = 0; continentIndex < numberOfContinents; ++continentIndex)
             {
+                continentParams.CalculateAverages(
+                    currentSeason: CurrentSeason,
+                    globalRainfall: GlobalAverageRainfall,
+                    globalTemperature: GlobalAverageTemperature);
+
                 Continents.Add(generator.Build());
             }
         }
