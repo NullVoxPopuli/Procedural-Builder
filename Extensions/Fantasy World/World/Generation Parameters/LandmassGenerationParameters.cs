@@ -13,46 +13,111 @@ namespace PGE.Fantasy_World.World.Generation_Parameters
             ((Landmass)Generated).GenerateRegions();
         }
 
+        // TODO: Region Diversity is hardcoded for now, should be specified by certain parameters... need to figure those out
         public void CalculateAverages(Objects.World.Season currentSeason, double globalTemperature, double globalRainfall)
         {
-            // Hardcoded for now, should be specified by the World
-            var regionDiversity = Gaussian.GetGaussianRandom(
+            // Region Diversity
+            ((Landmass)Generated).RegionDiversity = Gaussian.GetGaussianRandom(
                 mean: 0.5, 
                 standardDeviation: 0.1);
 
             // Average Rainfall
             ((Landmass)Generated).AverageRainfall = Gaussian.GetGaussianRandom(
                 mean: globalRainfall,
-                standardDeviation: regionDiversity);
+                standardDeviation: ((Landmass)Generated).RegionDiversity);
 
             // Average Temperature
             ((Landmass)Generated).AverageTemperature = Gaussian.GetGaussianRandom(
                 mean: globalTemperature,
-                standardDeviation: regionDiversity);
+                standardDeviation: ((Landmass)Generated).RegionDiversity);
 
             ApplySeasonToAverages(currentSeason);
         }
 
+        // TODO: Hours should be dictated by how close Landmass is to Equator and the planet's Solar Proximity
         private void ApplySeasonToAverages(Objects.World.Season currentSeason)
         {
             switch (currentSeason)
             {
                 case Objects.World.Season.Spring:
-                    ((Landmass) Generated).AverageRainfall += 0.2;
+                    ApplySpring();
                     break;
+
                 case Objects.World.Season.Summer:
-                    ((Landmass) Generated).AverageRainfall += 0.1;
-                    ((Landmass) Generated).AverageTemperature += 0.3;
+                    ApplySummer();
                     break;
+
                 case Objects.World.Season.Autumn:
-                    ((Landmass) Generated).AverageRainfall += 0.1;
-                    ((Landmass) Generated).AverageTemperature -= 0.05;
+                    ApplyAutumn();
                     break;
+
                 case Objects.World.Season.Winter:
-                    ((Landmass) Generated).AverageRainfall -= 0.1;
-                    ((Landmass) Generated).AverageTemperature -= 0.4;
+                    ApplyWinter();
                     break;
             }
+        }
+
+        private void ApplyWinter()
+        {
+            ((Landmass) Generated).AverageRainfall -= 0.1;
+            ((Landmass) Generated).AverageTemperature -= 0.4;
+
+            // Average Hours Of Available Sunlight
+            ((Landmass)Generated).AverageHoursOfAvailableSunlight = Gaussian.GetGaussianRandomInt(
+                mean: 6,
+                standardDeviation: ((Landmass)Generated).RegionDiversity);
+
+            // Sunlight Energy Concentration
+            ((Landmass)Generated).AverageSunlightConcentration = Gaussian.GetGaussianRandom(
+                mean: -0.3,
+                standardDeviation: ((Landmass)Generated).RegionDiversity);
+        }
+
+        private void ApplyAutumn()
+        {
+            ((Landmass) Generated).AverageRainfall += 0.1;
+            ((Landmass) Generated).AverageTemperature -= 0.05;
+
+            // Average Hours Of Available Sunlight
+            ((Landmass)Generated).AverageHoursOfAvailableSunlight = Gaussian.GetGaussianRandomInt(
+                mean: 8,
+                standardDeviation: ((Landmass)Generated).RegionDiversity);
+
+            // Sunlight Energy Concentration
+            ((Landmass)Generated).AverageSunlightConcentration = Gaussian.GetGaussianRandom(
+                mean: 0.1,
+                standardDeviation: ((Landmass)Generated).RegionDiversity);
+        }
+
+        private void ApplySummer()
+        {
+            ((Landmass) Generated).AverageRainfall += 0.1;
+            ((Landmass) Generated).AverageTemperature += 0.3;
+
+            // Average Hours Of Available Sunlight
+            ((Landmass)Generated).AverageHoursOfAvailableSunlight = Gaussian.GetGaussianRandomInt(
+                mean: 12,
+                standardDeviation: ((Landmass)Generated).RegionDiversity);
+
+            // Sunlight Energy Concentration
+            ((Landmass)Generated).AverageSunlightConcentration = Gaussian.GetGaussianRandom(
+                mean: 0.5,
+                standardDeviation: ((Landmass)Generated).RegionDiversity);
+        }
+
+        private void ApplySpring()
+        {
+            ((Landmass)Generated).AverageRainfall += 0.2;
+
+            // Average Hours Of Available Sunlight
+            ((Landmass)Generated).AverageHoursOfAvailableSunlight = Gaussian.GetGaussianRandomInt(
+                mean: 9,
+                standardDeviation: ((Landmass)Generated).RegionDiversity);
+
+            // Sunlight Energy Concentration
+            ((Landmass)Generated).AverageSunlightConcentration = Gaussian.GetGaussianRandom(
+                mean: 0.2,
+                standardDeviation: ((Landmass)Generated).RegionDiversity);
         }
     }
 }

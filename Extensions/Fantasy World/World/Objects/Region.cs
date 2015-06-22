@@ -15,15 +15,15 @@ namespace PGE.Fantasy_World.World.Objects
     {
         public List<Settlement> Settlements;
 
-        // Rate of precipitation
-        // Where -1.0 is the absence of rain and 1.0 is a constant monsoon
-        public double AverageRainfall;
-
         // Wind amount
         public double WindAmount;
 
-        // Heat Statistics
+        // Fauna Characteristics
+        public double AverageRainfall;
         public double AverageTemperature;
+        public double SoilNitrogenContent;
+        public int HoursOfAvailableSunlight;
+        public double SunlightConcentration;
 
         // Where -1.0 is completely unstable
         // 0.0 is standard seasons

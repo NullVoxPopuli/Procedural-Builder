@@ -16,5 +16,12 @@ namespace PGE.Core.Statistics
 
             return mean + randomValue*standardDeviation;
         }
+
+        public static int GetGaussianRandomInt(int mean, double standardDeviation)
+        {
+            var randomValue = 4 * Rand.Next() - 2.0;
+
+            return (int) (mean + randomValue * standardDeviation);
+        }
     }
 }

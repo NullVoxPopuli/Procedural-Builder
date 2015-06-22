@@ -29,6 +29,10 @@ namespace PGE.Fantasy_World.World.Objects
         public double AverageRainfall;
         public double AverageTemperature;
 
+        public double AverageSoilNitrogenContent;
+        public int AverageHoursOfAvailableSunlight;
+        public double AverageSunlightConcentration;
+
         public void GenerateRegions()
         {
             var numberOfRegions = Dice.Roll((int)(MaximumNumberOfRegions * RegionDiversity));

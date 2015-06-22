@@ -19,6 +19,11 @@ namespace PGE.Fantasy_World.World.Objects
         // 1.0 being further than normal (like Mars)
         public double ProximityToSolarEntity = 0.0;
 
+        // Atmosphere
+        public double AtmosphericNitrogenPercent;       // Earth's N2:  78.1%
+        public double AtmosphericOxygenPercent;         // Earth's O2:  20.9%
+        public double AtmosphericCarbonDioxidePercent;  // Earth's CO2: 0.03%
+
         // What season is it? // TODO: move somewhere else, like biome
         public enum Season
         {
