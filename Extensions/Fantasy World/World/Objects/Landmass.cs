@@ -14,6 +14,12 @@ namespace PGE.Fantasy_World.World.Objects
 
         // Input parameters should examine the effects of the Planet on the landmass
 
+        public double ContinentSize;
+
+        // Where 0.0 is located on the equator
+        // Where 1.0 is located at a pole
+        public double ProximityToEquator;
+
         // Maximum number of Regions
         public int MaximumNumberOfRegions = 6;
 

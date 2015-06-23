@@ -17,12 +17,14 @@ namespace PGE.Fantasy_World.World.Objects
         // -1.0 being closer than normal (like Venus) 
         // 0.0 being completely even with Earth's orbit
         // 1.0 being further than normal (like Mars)
-        public double ProximityToSolarEntity = 0.0;
+        public double ProximityToSolarEntity;
 
-        // Atmosphere
+        // Atmosphere and resource availability
         public double AtmosphericNitrogenPercent;       // Earth's N2:  78.1%
         public double AtmosphericOxygenPercent;         // Earth's O2:  20.9%
         public double AtmosphericCarbonDioxidePercent;  // Earth's CO2: 0.03%
+        public double PercentageOfLand;                 // Earth: 29% Land
+        public double AbundanceOfWaterRelativeToEarth;  // Unbounded, always positive
 
         // What season is it? // TODO: move somewhere else, like biome
         public enum Season
@@ -60,6 +62,8 @@ namespace PGE.Fantasy_World.World.Objects
 
             for (var continentIndex = 0; continentIndex < numberOfContinents; ++continentIndex)
             {
+                continentParams.CalculateLocationAndSize();
+
                 continentParams.CalculateAverages(
                     currentSeason: CurrentSeason,
                     globalRainfall: GlobalAverageRainfall,

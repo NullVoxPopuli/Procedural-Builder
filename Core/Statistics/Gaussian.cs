@@ -23,5 +23,10 @@ namespace PGE.Core.Statistics
 
             return (int) (mean + randomValue * standardDeviation);
         }
+
+        public static double GetStandardDeviation(double mean, double ninetyFifthPercentile)
+        {
+            return (ninetyFifthPercentile - mean) / 4;
+        }
     }
 }

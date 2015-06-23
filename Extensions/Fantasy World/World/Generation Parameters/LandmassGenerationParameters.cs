@@ -1,4 +1,5 @@
-﻿using PGE.Core.Generated_Items;
+﻿using System;
+using PGE.Core.Generated_Items;
 using PGE.Core.Statistics;
 using PGE.Fantasy_World.World.Objects;
 
@@ -13,13 +14,22 @@ namespace PGE.Fantasy_World.World.Generation_Parameters
             ((Landmass)Generated).GenerateRegions();
         }
 
+        public void CalculateLocationAndSize()
+        {
+            ((Landmass)Generated).ContinentSize = Gaussian.GetGaussianRandom(
+                mean: 0.5,
+                standardDeviation: 0.1);
+
+            ((Landmass)Generated).ProximityToEquator = Gaussian.GetGaussianRandom(
+                mean: 0.5,
+                standardDeviation: 0.25);
+        }
+
         // TODO: Region Diversity is hardcoded for now, should be specified by certain parameters... need to figure those out
         public void CalculateAverages(Objects.World.Season currentSeason, double globalTemperature, double globalRainfall)
         {
             // Region Diversity
-            ((Landmass)Generated).RegionDiversity = Gaussian.GetGaussianRandom(
-                mean: 0.5, 
-                standardDeviation: 0.1);
+            CalculateDiversity();
 
             // Average Rainfall
             ((Landmass)Generated).AverageRainfall = Gaussian.GetGaussianRandom(
@@ -27,11 +37,19 @@ namespace PGE.Fantasy_World.World.Generation_Parameters
                 standardDeviation: ((Landmass)Generated).RegionDiversity);
 
             // Average Temperature
-            ((Landmass)Generated).AverageTemperature = Gaussian.GetGaussianRandom(
+            ((Landmass) Generated).AverageTemperature = Gaussian.GetGaussianRandom(
                 mean: globalTemperature,
-                standardDeviation: ((Landmass)Generated).RegionDiversity);
+                standardDeviation: ((Landmass) Generated).RegionDiversity);
+            ((Landmass) Generated).AverageTemperature *= ((Landmass) Generated).ProximityToEquator;
 
             ApplySeasonToAverages(currentSeason);
+        }
+
+        private void CalculateDiversity()
+        {
+            ((Landmass) Generated).RegionDiversity = Gaussian.GetGaussianRandom(
+                mean: ((Landmass) Generated).ContinentSize,
+                standardDeviation: 0.2);
         }
 
         // TODO: Hours should be dictated by how close Landmass is to Equator and the planet's Solar Proximity
