@@ -6,7 +6,7 @@ using PGE.Fantasy_World.Lifeforms.Objects;
 
 namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
 {
-    public class GenericBuildingGenerationParameters : GenerationParameters
+    public class GenericBuildingBuilder : Builder
     {
         private Humanoid _owner;
         protected string BuildingType, Name;
@@ -40,7 +40,7 @@ namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
         private void GenerateOwner()
         {
             var gen = new Generator<Humanoid>();
-            var generationParams = new HumanoidGenerationParameters();
+            var generationParams = new HumanoidBuilder();
             gen.Add(generationParams);
 
             _owner = gen.Build();

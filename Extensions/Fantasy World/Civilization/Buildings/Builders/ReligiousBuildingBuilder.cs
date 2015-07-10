@@ -5,7 +5,7 @@ using PGE.Fantasy_World.Civilization.Buildings.Objects;
 
 namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
 {
-    public class ReligiousBuildingGenerationParameters : GenericBuildingGenerationParameters
+    public class ReligiousBuildingBuilder : GenericBuildingBuilder
     {
         private string _patron;
 

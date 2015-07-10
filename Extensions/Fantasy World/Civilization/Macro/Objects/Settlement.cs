@@ -12,7 +12,6 @@ namespace PGE.Fantasy_World.Civilization.Macro.Objects
         public List<Building> Buildings;
 
         // Procedurally generate these
-        public Biome Environment;
         public string Government;
     }
 }

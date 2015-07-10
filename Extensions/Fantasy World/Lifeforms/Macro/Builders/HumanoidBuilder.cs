@@ -10,7 +10,7 @@ using PGE.Fantasy_World.Lifeforms.Objects;
 
 namespace PGE.Fantasy_World.Lifeforms.Generation_Parameters
 {
-    public class HumanoidGenerationParameters : GenerationParameters
+    public class HumanoidBuilder : Builder
     {
         private int _numberOfIdeals = 1,
             _numberOfBonds = 1,

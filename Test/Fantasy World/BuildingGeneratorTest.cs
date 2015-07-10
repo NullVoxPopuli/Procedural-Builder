@@ -15,9 +15,9 @@ namespace PGE.Fantasy_World.Tests
         public void CanGenerateMany()
         {
             var gen = new Generator<Building>();
-            var generationParameters = new GenericBuildingGenerationParameters();
+            var Builder = new GenericBuildingBuilder();
 
-            gen.Add(generationParameters);
+            gen.Add(Builder);
 
             var buildings = new List<Building>();
 
@@ -33,13 +33,13 @@ namespace PGE.Fantasy_World.Tests
         public void CanSetOwner()
         {
             var gen = new Generator<ReligiousBuilding>();
-            var generationParameters = new ReligiousBuildingGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new ReligiousBuildingBuilder();
+            gen.Add(Builder);
 
             var npcGen = new Generator<Humanoid>();
-            npcGen.Add(new HumanoidGenerationParameters());
+            npcGen.Add(new HumanoidBuilder());
             var npc = npcGen.Build();
-            generationParameters.SetOwner(npc);
+            Builder.SetOwner(npc);
 
             var building = gen.Build();
 
@@ -50,11 +50,11 @@ namespace PGE.Fantasy_World.Tests
         public void CanSetBuildingType()
         {
             var gen = new Generator<ReligiousBuilding>();
-            var generationParameters = new ReligiousBuildingGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new ReligiousBuildingBuilder();
+            gen.Add(Builder);
 
             const string testType = "Basic Description";
-            generationParameters.SetType(testType);
+            Builder.SetType(testType);
 
             var building = gen.Build();
 
@@ -66,8 +66,8 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<ReligiousBuilding>();
 
-            var generationParameters = new ReligiousBuildingGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new ReligiousBuildingBuilder();
+            gen.Add(Builder);
 
             var building = gen.Build();
 
@@ -81,11 +81,11 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<ReligiousBuilding>();
 
-            var generationParameters = new ReligiousBuildingGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new ReligiousBuildingBuilder();
+            gen.Add(Builder);
 
             const string testType = "Basic Patron";
-            generationParameters.SetPatron(testType);
+            Builder.SetPatron(testType);
 
             var building = gen.Build();
 
@@ -97,8 +97,8 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Residence>();
 
-            var generationParameters = new ResidenceGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new ResidenceBuilder();
+            gen.Add(Builder);
 
             var building = gen.Build();
 
@@ -112,11 +112,11 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Residence>();
 
-            var generationParameters = new ResidenceGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new ResidenceBuilder();
+            gen.Add(Builder);
 
             var npcs = new List<Humanoid>();
-            generationParameters.SetInhabitants(npcs);
+            Builder.SetInhabitants(npcs);
             var building = gen.Build();
 
             Assert.IsTrue(building.Inhabitants.Equals(npcs));
@@ -127,8 +127,8 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Shop>();
 
-            var generationParameters = new ShopGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new ShopBuilder();
+            gen.Add(Builder);
 
             var building = gen.Build();
 
@@ -142,11 +142,11 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Shop>();
 
-            var generationParameters = new ShopGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new ShopBuilder();
+            gen.Add(Builder);
 
             var inventory = new List<string>();
-            generationParameters.SetInventory(inventory);
+            Builder.SetInventory(inventory);
             var building = gen.Build();
 
             Assert.IsTrue(building.Inventory.Equals(inventory));
@@ -157,8 +157,8 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Tavern>();
 
-            var generationParameters = new TavernGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new TavernBuilder();
+            gen.Add(Builder);
 
             var building = gen.Build();
 
@@ -172,11 +172,11 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Tavern>();
 
-            var generationParameters = new TavernGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new TavernBuilder();
+            gen.Add(Builder);
 
             const string testName = "Test Name";
-            generationParameters.SetName(testName);
+            Builder.SetName(testName);
             var building = gen.Build();
 
             Assert.IsTrue(building.Name.Equals(testName));
@@ -187,8 +187,8 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Warehouse>();
 
-            var generationParameters = new WarehouseGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new WarehouseBuilder();
+            gen.Add(Builder);
 
             var building = gen.Build();
 
@@ -202,11 +202,11 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Warehouse>();
 
-            var generationParameters = new WarehouseGenerationParameters();
-            gen.Add(generationParameters);
+            var Builder = new WarehouseBuilder();
+            gen.Add(Builder);
 
             var inventory = new List<string>();
-            generationParameters.SetInventory(inventory);
+            Builder.SetInventory(inventory);
             var building = gen.Build();
 
             Assert.IsTrue(building.Inventory.Equals(inventory));

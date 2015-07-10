@@ -12,7 +12,7 @@ namespace PGE.Fantasy_World.Tests.Lifeform_Tests
         [TestMethod]
         public void TestInheritance()
         {
-            var genParams = new HumanoidGenerationParameters();
+            var genParams = new HumanoidBuilder();
             genParams.AddTrait(new Trait());
 
             var gen = new Generator<Humanoid>();

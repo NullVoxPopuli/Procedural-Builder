@@ -14,20 +14,20 @@ namespace PGE.Core.Generator
          * on each of the parameters
          */
 
-        private GenerationParameters _generationParameters;
+        private Builder _Builder;
 
-        public void Add(GenerationParameters parameters)
+        public void Add(Builder parameters)
         {
-            _generationParameters = parameters;
+            _Builder = parameters;
         }
 
         public T Build()
         {
             var generated = new T();
 
-            if (_generationParameters != null)
+            if (_Builder != null)
             {
-                _generationParameters.ApplyParameters(generated as AbstractGeneratableObject);
+                _Builder.ApplyParameters(generated as AbstractGeneratableObject);
             }
             return generated;
         }

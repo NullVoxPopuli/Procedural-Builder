@@ -2,7 +2,7 @@
 
 namespace PGE.Fantasy_World.World.Generation_Parameters
 {
-    public class WorldGenerationParameters : GenerationParameters
+    public class WorldBuilder : Builder
     {
         public override void ApplyParameters(AbstractGeneratableObject gen)
         {

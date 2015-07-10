@@ -1,6 +1,6 @@
 ﻿namespace PGE.Core.Generated_Items
 {
-    public abstract class GenerationParameters
+    public abstract class Builder
     {
         protected AbstractGeneratableObject Generated;
 

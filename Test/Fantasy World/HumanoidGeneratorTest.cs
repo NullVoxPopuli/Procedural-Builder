@@ -14,7 +14,7 @@ namespace PGE.Fantasy_World.Tests
         public void GenerateAlignment_ShouldResultInOneOfNineOptions()
         {
             var gen = new Generator<Humanoid>();
-            var generationParams = new HumanoidGenerationParameters();
+            var generationParams = new HumanoidBuilder();
             generationParams.SetNumberOfIdeals(3);
             generationParams.SetNumberOfNames(2);
             generationParams.SetNumberOfFlaws(2);
@@ -37,7 +37,7 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Humanoid>();
 
-            gen.Add(new HumanoidGenerationParameters());
+            gen.Add(new HumanoidBuilder());
 
             var npc = gen.Build();
 
@@ -49,7 +49,7 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Humanoid>();
 
-            var generationParams = new HumanoidGenerationParameters();
+            var generationParams = new HumanoidBuilder();
             generationParams.SetNumberOfNames(2);
             gen.Add(generationParams);
 
@@ -63,7 +63,7 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Humanoid>();
 
-            var generationParams = new HumanoidGenerationParameters();
+            var generationParams = new HumanoidBuilder();
             generationParams.SetNumberOfAppearanceTraits(2);
             gen.Add(generationParams);
 
@@ -78,7 +78,7 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Humanoid>();
 
-            var generationParams = new HumanoidGenerationParameters();
+            var generationParams = new HumanoidBuilder();
             generationParams.SetNumberOfTalents(2);
             gen.Add(generationParams);
 
@@ -92,7 +92,7 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Humanoid>();
 
-            var generationParams = new HumanoidGenerationParameters();
+            var generationParams = new HumanoidBuilder();
             generationParams.SetNumberOfTraits(2);
             gen.Add(generationParams);
 
@@ -106,7 +106,7 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Humanoid>();
 
-            gen.Add(new HumanoidGenerationParameters());
+            gen.Add(new HumanoidBuilder());
 
             var npc = gen.Build();
 
@@ -118,7 +118,7 @@ namespace PGE.Fantasy_World.Tests
         {
             var gen = new Generator<Humanoid>();
 
-            gen.Add(new HumanoidGenerationParameters());
+            gen.Add(new HumanoidBuilder());
 
             var npc = gen.Build();
 
@@ -134,7 +134,7 @@ namespace PGE.Fantasy_World.Tests
         public void GenerateIdeals_ShouldResultInIdeals()
         {
             var gen = new Generator<Humanoid>();
-            var generationParams = new HumanoidGenerationParameters();
+            var generationParams = new HumanoidBuilder();
             generationParams.SetNumberOfIdeals(3);
 
             gen.Add(generationParams);

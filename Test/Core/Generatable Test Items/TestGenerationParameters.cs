@@ -4,7 +4,7 @@ using PGE.Core.Statistics;
 
 namespace Generator_Core_Tests.Generatable_Test_Items
 {
-    class TestGenerationParameters : GenerationParameters
+    class TestBuilder : Builder
     {
         public override void ApplyParameters(AbstractGeneratableObject gen)
         {

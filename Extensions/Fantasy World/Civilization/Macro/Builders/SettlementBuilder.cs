@@ -2,7 +2,7 @@
 
 namespace PGE.Fantasy_World.Civilization.Macro.Generation_Parameters
 {
-    public class SettlementGenerationParameters : GenerationParameters
+    public class SettlementBuilder : Builder
     {
         private int _population = -1;
 

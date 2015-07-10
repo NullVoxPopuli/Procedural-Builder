@@ -34,7 +34,7 @@ namespace PGE.Fantasy_World.World.Objects
         {
             // Prepare the basic Build Parameters for the Settlements using our statistics
             var settlementGenerator = new Generator<Settlement>();
-            var settlementParams = new RegionGenerationParameters();
+            var settlementParams = new RegionBuilder();
             settlementGenerator.Add(settlementParams);
 
             var numberOfSettlements = CalculateNumberOfSettlements();

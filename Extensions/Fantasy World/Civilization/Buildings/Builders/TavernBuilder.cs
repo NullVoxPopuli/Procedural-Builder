@@ -4,7 +4,7 @@ using PGE.Core.Statistics;
 
 namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
 {
-    public class TavernGenerationParameters : GenericBuildingGenerationParameters
+    public class TavernBuilder : GenericBuildingBuilder
     {
         public override void ApplyParameters(AbstractGeneratableObject gen)
         {

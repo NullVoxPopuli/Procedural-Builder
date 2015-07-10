@@ -6,7 +6,7 @@ using PGE.Fantasy_World.Lifeforms.Objects;
 
 namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
 {
-    public class ResidenceGenerationParameters : GenericBuildingGenerationParameters
+    public class ResidenceBuilder : GenericBuildingBuilder
     {
         private List<Humanoid> _inhabitants;
 

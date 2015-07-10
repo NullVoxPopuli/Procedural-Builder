@@ -23,7 +23,7 @@ namespace Generator_Core_Tests.Generator
         {
             var gen = new Generator<TestGenerated>();
 
-            gen.Add(new TestGenerationParameters());
+            gen.Add(new TestBuilder());
 
             var results = gen.Build();
 

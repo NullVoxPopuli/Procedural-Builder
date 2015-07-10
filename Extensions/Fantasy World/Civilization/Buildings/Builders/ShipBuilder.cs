@@ -5,7 +5,7 @@ using PGE.Fantasy_World.Civilization.Buildings.Objects;
 
 namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
 {
-    public class WarehouseGenerationParameters : GenericBuildingGenerationParameters
+    public class ShopBuilder : GenericBuildingBuilder
     {
         private List<string> _inventory; 
 
@@ -13,6 +13,9 @@ namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
         {
             base.ApplyParameters(gen);
 
+            // Inventory should be its own object and be generated with several parameters
+            //   1. Stocked Percentage
+            //   2. Rarity
             ApplyInventory();
         }
 
@@ -20,32 +23,31 @@ namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
 
         protected override void GenerateType()
         {
-            var warehouseTable = new List<string>
+            var shopTypeTable = new List<string>
             {
-                "Empty",
-                "Empty",
-                "Abandoned",
-                "Abandoned",
-                "Heavily guarded, expensive goods",
-                "Heavily guarded, expensive goods",
-                "Cheap goods",
-                "Cheap goods",
-                "Cheap goods",
-                "Cheap goods",
-                "Bulk Goods",
-                "Bulk Goods",
-                "Bulk Goods",
-                "Bulk Goods",
-                "Live Animals",
-                "Weapons",
-                "Armor",
-                "Weapons and Armor",
-                "Goods from distant land",
-                "Goods from distant land",
-                "Secret smuggler's den"
+                "Pawnshop",
+                "Herbs and Incense",
+                "Fruits/Vegetables",
+                "Dried Meats",
+                "Pottery",
+                "Undertaker",
+                "Books",
+                "Moneylender",
+                "Smithy",
+                "Used weapons and armor",
+                "Chandler",
+                "Carpenter",
+                "Weaver",
+                "Jeweler",
+                "Baker",
+                "Cartographer",
+                "Tailor",
+                "Ropemaker",
+                "Mason",
+                "Scribe"
             };
 
-            BuildingType = Dice.RollOnTable(warehouseTable);
+            BuildingType = Dice.RollOnTable(shopTypeTable);
         }
 
         #endregion
@@ -63,7 +65,7 @@ namespace PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters
                 GenerateInventory();
             }
 
-            ((Warehouse)Generated).Inventory = _inventory;
+            ((Shop)Generated).Inventory = _inventory;
         }
 
         private void GenerateInventory()

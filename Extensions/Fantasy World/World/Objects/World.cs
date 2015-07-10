@@ -57,7 +57,7 @@ namespace PGE.Fantasy_World.World.Objects
 
             // Prepare the basic Build Parameters for the Landmasses using our statistics
             var generator = new Generator<Landmass>();
-            var continentParams = new LandmassGenerationParameters();
+            var continentParams = new LandmassBuilder();
             generator.Add(continentParams);
 
             for (var continentIndex = 0; continentIndex < numberOfContinents; ++continentIndex)

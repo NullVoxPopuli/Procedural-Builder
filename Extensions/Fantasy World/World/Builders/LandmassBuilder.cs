@@ -5,7 +5,7 @@ using PGE.Fantasy_World.World.Objects;
 
 namespace PGE.Fantasy_World.World.Generation_Parameters
 {
-    public class LandmassGenerationParameters : GenerationParameters
+    public class LandmassBuilder : Builder
     {
         public override void ApplyParameters(AbstractGeneratableObject gen)
         {

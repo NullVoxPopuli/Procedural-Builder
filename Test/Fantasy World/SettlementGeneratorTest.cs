@@ -12,7 +12,7 @@ namespace PGE.Fantasy_World.Tests
         public void GenerateTest()
         {
             var gen = new Generator<Settlement>();
-            var generationParams = new SettlementGenerationParameters();
+            var generationParams = new SettlementBuilder();
         
             gen.Add(generationParams);
             var generatedSettlement = gen.Build();

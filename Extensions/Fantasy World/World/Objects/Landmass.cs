@@ -45,7 +45,7 @@ namespace PGE.Fantasy_World.World.Objects
 
             // Prepare the basic Build Parameters for the Landmasses using our statistics
             var generator = new Generator<Region>();
-            var regionParams  = new RegionGenerationParameters();
+            var regionParams  = new RegionBuilder();
             generator.Add(regionParams);
 
             for (var regionIndex = 0; regionIndex < numberOfRegions; ++regionIndex)
