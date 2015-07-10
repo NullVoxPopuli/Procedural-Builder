@@ -45,30 +45,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lifeforms\Macro\Objects\Humanoid.cs" />
-    <Compile Include="Lifeforms\Macro\Builders\HumanoidBuilder.cs" />
-    <Compile Include="Lifeforms\Micro\Objects\Trait.cs" />
+    <Compile Include="Models\Life\Humanoid.cs" />
+    <Compile Include="Builders\Life\HumanoidBuilder.cs" />
+    <Compile Include="Models\Life\Trait.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Civilization\Buildings\Builders\ReligiousBuildingBuilder.cs" />
-    <Compile Include="Civilization\Buildings\Builders\ResidenceBuilder.cs" />
-    <Compile Include="Civilization\Buildings\Builders\ShipBuilder.cs" />
-    <Compile Include="Civilization\Buildings\Builders\TavernBuilder.cs" />
-    <Compile Include="Civilization\Buildings\Builders\WarehouseBuilder.cs" />
-    <Compile Include="Civilization\Buildings\Objects\Building.cs" />
-    <Compile Include="Civilization\Buildings\Builders\GenericBuildingBuilder.cs" />
-    <Compile Include="Civilization\Buildings\Objects\ReligiousBuilding.cs" />
-    <Compile Include="Civilization\Buildings\Objects\Residence.cs" />
-    <Compile Include="Civilization\Buildings\Objects\Shop.cs" />
-    <Compile Include="Civilization\Buildings\Objects\Tavern.cs" />
-    <Compile Include="Civilization\Buildings\Objects\Warehouse.cs" />
-    <Compile Include="Civilization\Macro\Objects\Settlement.cs" />
-    <Compile Include="Civilization\Macro\Builders\SettlementBuilder.cs" />
-    <Compile Include="World\Builders\LandmassBuilder.cs" />
-    <Compile Include="World\Builders\RegionBuilder.cs" />
-    <Compile Include="World\Builders\WorldBuilder.cs" />
-    <Compile Include="World\Objects\Landmass.cs" />
-    <Compile Include="World\Objects\Region.cs" />
-    <Compile Include="World\Objects\World.cs" />
+    <Compile Include="Builders\Civilization\ReligiousBuildingBuilder.cs" />
+    <Compile Include="Builders\Civilization\ResidenceBuilder.cs" />
+    <Compile Include="Builders\Civilization\ShopBuilder.cs" />
+    <Compile Include="Builders\Civilization\TavernBuilder.cs" />
+    <Compile Include="Models\Civilization\Building.cs" />
+    <Compile Include="Builders\Civilization\GenericBuildingBuilder.cs" />
+    <Compile Include="Models\Civilization\ReligiousBuilding.cs" />
+    <Compile Include="Models\Civilization\Residence.cs" />
+    <Compile Include="Models\Civilization\Shop.cs" />
+    <Compile Include="Models\Civilization\Tavern.cs" />
+    <Compile Include="Models\Civilization\Settlement.cs" />
+    <Compile Include="Builders\Civilization\SettlementBuilder.cs" />
+    <Compile Include="Builders\World\LandmassBuilder.cs" />
+    <Compile Include="Builders\World\RegionBuilder.cs" />
+    <Compile Include="Builders\World\WorldBuilder.cs" />
+    <Compile Include="Models\World\Landmass.cs" />
+    <Compile Include="Models\World\Region.cs" />
+    <Compile Include="Models\World\Planet.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj">
@@ -76,9 +74,7 @@
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Lifeforms\Micro\Builders\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

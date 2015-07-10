@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PGE.Core.Generated_Items;
-using PGE.Core.Generator;
+using PGE.Core.Models;
 using PGE.Core.Statistics;
 using PGE.Fantasy_World.Civilization.Macro.Objects;
 using PGE.Fantasy_World.World.Builders;
 
 namespace PGE.Fantasy_World.Models.World
 {
-    public class Region : AbstractGeneratableObject
+    public class Region : Model
     {
         public List<Settlement> Settlements;
 
@@ -30,20 +29,20 @@ namespace PGE.Fantasy_World.Models.World
         // 1.0 is a single season
         public double StabilityOfClimate;
 
-        public void GenerateSettlements()
-        {
-            // Prepare the basic Build Parameters for the Settlements using our statistics
-            var settlementGenerator = new Generator<Settlement>();
-            var settlementParams = new RegionBuilder();
-            settlementGenerator.Add(settlementParams);
-
-            var numberOfSettlements = CalculateNumberOfSettlements();
-
-            for (var regionIndex = 0; regionIndex < numberOfSettlements; ++regionIndex)
-            {
-                Settlements.Add(settlementGenerator.Build());
-            }
-        }
+        //public void GenerateSettlements()
+        //{
+        //    // Prepare the basic Build Parameters for the Settlements using our statistics
+        //    var settlementGenerator = new Generator<Settlement>();
+        //    var settlementParams = new RegionBuilder();
+        //    settlementGenerator.Add(settlementParams);
+        //
+        //    var numberOfSettlements = CalculateNumberOfSettlements();
+        //
+        //    for (var regionIndex = 0; regionIndex < numberOfSettlements; ++regionIndex)
+        //    {
+        //        Settlements.Add(settlementGenerator.Build());
+        //    }
+        //}
 
         private int CalculateNumberOfSettlements()
         {

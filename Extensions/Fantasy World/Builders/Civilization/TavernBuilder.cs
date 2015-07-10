@@ -1,19 +1,37 @@
-﻿using System.Collections.Generic;
-using PGE.Core.Generated_Items;
+﻿using System;
+using System.Collections.Generic;
 using PGE.Core.Statistics;
+using PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Objects;
 
-namespace PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Builders
+namespace PGE.Fantasy_World.Builders.Civilization
 {
     public class TavernBuilder : GenericBuildingBuilder
     {
-        public override void ApplyParameters(AbstractGeneratableObject gen)
+        public Tavern Build()
         {
-            base.ApplyParameters(gen);
+            return new Tavern()
+            {
+                Name = _name,
+                Owner = _owner,
+                Type = _buildingType
+            };
         }
 
-        #region Handle Type
+        public void SetRelationshipDefaults()
+        {
+            base.SetRelationshipDefaults();
 
-        protected override void GenerateType()
+            if (String.IsNullOrEmpty(_buildingType))
+            {
+                GenerateType();
+            }
+            if (String.IsNullOrEmpty(_name))
+            {
+                GenerateType();
+            }
+        }
+
+        protected void GenerateType()
         {
             var tavernTypeTable = new List<string>()
             {
@@ -28,13 +46,10 @@ namespace PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Buil
                 "Brothel"
             };
             
-            BuildingType = Dice.RollOnTable(tavernTypeTable);
+            _buildingType = Dice.RollOnTable(tavernTypeTable);
         }
 
-        #endregion
-        #region Handle Name
-
-        protected override void GenerateName()
+        protected void GenerateName()
         {
             var firstNamePartTable = new List<string>()
             {
@@ -60,9 +75,7 @@ namespace PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Buil
 
             };
 
-            Name = Dice.RollOnTable(firstNamePartTable) + " " + Dice.RollOnTable(secondNamePartTable); 
+            _name = Dice.RollOnTable(firstNamePartTable) + " " + Dice.RollOnTable(secondNamePartTable); 
         }
-
-        #endregion
     }
 }

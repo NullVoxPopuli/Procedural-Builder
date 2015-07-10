@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PGE.Core.Generator;
-using PGE.Fantasy_World.Lifeforms.Builders;
+using PGE.Fantasy_World.Builders.Life;
 using PGE.Fantasy_World.Lifeforms.Objects;
 
 namespace PGE.Fantasy_World.Tests

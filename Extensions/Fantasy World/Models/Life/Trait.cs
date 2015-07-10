@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PGE.Core.Generated_Items;
-using PGE.Fantasy_World.Lifeforms.Objects;
+﻿using PGE.Core.Models;
 
-namespace PGE.Fantasy_World.Lifeforms.Micro.Objects
+namespace PGE.Fantasy_World.Models.Life
 {
     // Describes an effect to a lifeform
-    public class Trait : AbstractGeneratableObject
+    public class Trait : Model
     {
         public HereditaryType HereditaryNature;
         public double EffectStrength;

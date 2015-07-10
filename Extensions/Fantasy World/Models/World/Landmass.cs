@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using PGE.Core.Generated_Items;
-using PGE.Core.Generator;
+using PGE.Core.Models;
 using PGE.Core.Statistics;
 using PGE.Fantasy_World.Civilization.Macro.Objects;
 using PGE.Fantasy_World.World.Builders;
 
 namespace PGE.Fantasy_World.Models.World
 {
-    public class Landmass : AbstractGeneratableObject
+    public class Landmass : Model
     {
         public List<Region> Regions;
 
@@ -39,20 +38,20 @@ namespace PGE.Fantasy_World.Models.World
         public int AverageHoursOfAvailableSunlight;
         public double AverageSunlightConcentration;
 
-        public void GenerateRegions()
-        {
-            var numberOfRegions = Dice.Roll((int)(MaximumNumberOfRegions * RegionDiversity));
-
-            // Prepare the basic Build Parameters for the Landmasses using our statistics
-            var generator = new Generator<Region>();
-            var regionParams  = new RegionBuilder();
-            generator.Add(regionParams);
-
-            for (var regionIndex = 0; regionIndex < numberOfRegions; ++regionIndex)
-            {
-                // Specify the Region Parameters here (Rainfall, Temperature)
-                Regions.Add(generator.Build());
-            }
-        }
+        //public void GenerateRegions()
+        //{
+        //    var numberOfRegions = Dice.Roll((int)(MaximumNumberOfRegions * RegionDiversity));
+        //
+        //    // Prepare the basic Build Parameters for the Landmasses using our statistics
+        //    var generator = new Generator<Region>();
+        //    var regionParams  = new RegionBuilder();
+        //    generator.Add(regionParams);
+        //
+        //    for (var regionIndex = 0; regionIndex < numberOfRegions; ++regionIndex)
+        //    {
+        //        // Specify the Region Parameters here (Rainfall, Temperature)
+        //        Regions.Add(generator.Build());
+        //    }
+        //}
     }
 }

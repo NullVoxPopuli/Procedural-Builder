@@ -6,7 +6,7 @@ using PGE.Fantasy_World.World.Builders;
 
 namespace PGE.Fantasy_World.Models.World
 {
-    public class World : Model
+    public class Planet : Model
     {
         public List<Landmass> Continents;
 

@@ -1,26 +1,47 @@
-﻿using System.Collections.Generic;
-using PGE.Core.Generated_Items;
+﻿using System;
+using System.Collections.Generic;
 using PGE.Core.Statistics;
-using PGE.Fantasy_World.Builders.Civilization.Civilization.Objects;
-using PGE.Fantasy_World.Builders.Civilization.Civilization.Objects;
-using PGE.Fantasy_World.Lifeforms.Objects;
+using PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Objects;
+using PGE.Fantasy_World.Models.Life;
 
-namespace PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Builders
+namespace PGE.Fantasy_World.Builders.Civilization
 {
     public class ResidenceBuilder : GenericBuildingBuilder
     {
         private List<Humanoid> _inhabitants;
 
-        public override void ApplyParameters(AbstractGeneratableObject gen)
+        public Residence Build()
         {
-            base.ApplyParameters(gen);
-
-            ApplyInhabitants();
+            return new Residence()
+            {
+                Name = _name,
+                Owner = _owner,
+                Type = _buildingType,
+                Inhabitants = _inhabitants
+            };
         }
 
-        #region Handle Type
+        public void SetRelationshipDefaults()
+        {
+            base.SetRelationshipDefaults();
 
-        protected override void GenerateType()
+            if (String.IsNullOrEmpty(_buildingType))
+            {
+                GenerateType();
+            }
+            if (_inhabitants == null)
+            {
+                _inhabitants = new List<Humanoid>();
+            }
+        }
+
+        public ResidenceBuilder WithInhabitants(List<Humanoid> inhabitants)
+        {
+            _inhabitants = inhabitants;
+            return this;
+        }
+
+        protected void GenerateType()
         {
             var residenceTable = new List<string>
             {
@@ -45,32 +66,7 @@ namespace PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Buil
                 "Front for secret cult",
                 "Lavish, guarded mansion"
             };
-            ((Building)Generated).Type = Dice.RollOnTable(residenceTable);
+            _buildingType = Dice.RollOnTable(residenceTable);
         }
-
-        #endregion
-        #region Handle Inhabintants
-
-        public void SetInhabitants(List<Humanoid> inhabitants)
-        {
-            _inhabitants = inhabitants;
-        }
-
-        private void ApplyInhabitants()
-        {
-            if (_inhabitants == null)
-            {
-                GenerateInhabitants();
-            }
-
-            ((Residence)Generated).Inhabitants = _inhabitants;
-        }
-
-        private void GenerateInhabitants()
-        {
-            _inhabitants = new List<Humanoid>();
-        }
-
-        #endregion
     }
 }

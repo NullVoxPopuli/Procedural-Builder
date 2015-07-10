@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using PGE.Core.Generated_Items;
-using PGE.Fantasy_World.Lifeforms.Micro.Objects;
+using PGE.Core.Models;
 
-namespace PGE.Fantasy_World.Lifeforms.Objects
+namespace PGE.Fantasy_World.Models.Life
 {
     // Chief drivers of history
-    public class Humanoid : AbstractGeneratableObject
+    public class Humanoid : Model
     {
         public string Name;
         public string Ideals;

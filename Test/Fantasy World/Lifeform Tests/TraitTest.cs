@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PGE.Core.Generator;
-using PGE.Fantasy_World.Lifeforms.Builders;
-using PGE.Fantasy_World.Lifeforms.Micro.Objects;
 using PGE.Fantasy_World.Lifeforms.Objects;
+using PGE.Fantasy_World.Models.Life;
 
 namespace PGE.Fantasy_World.Tests.Lifeform_Tests
 {
@@ -12,16 +10,16 @@ namespace PGE.Fantasy_World.Tests.Lifeform_Tests
         [TestMethod]
         public void TestInheritance()
         {
-            var genParams = new HumanoidBuilder();
-            genParams.AddTrait(new Trait());
-
-            var gen = new Generator<Humanoid>();
-            gen.Add(genParams);
-
-            var human = gen.Build();
-
-            Assert.IsNotNull(human);
-            Assert.IsNotNull(human.Traits);
+           //var genParams = new HumanoidBuilder();
+           //genParams.AddTrait(new Trait());
+           //
+           //var gen = new Generator<Humanoid>();
+           //gen.Add(genParams);
+           //
+           //var human = gen.Build();
+           //
+           //Assert.IsNotNull(human);
+           //Assert.IsNotNull(human.Traits);
         }
 
         // One thing I'm not certain about is how to match up the traits from father and mother

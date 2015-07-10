@@ -1,13 +1,13 @@
 ﻿using PGE.Core.Builder;
-using PGE.Core.Models;
+using PGE.Fantasy_World.Models.World;
 
-namespace PGE.Fantasy_World.Builders.Civilization.Civilization.World
+namespace PGE.Fantasy_World.Builders.World
 {
-    public class WorldBuilder : IBuilder<World>
+    public class WorldBuilder : IBuilder<Planet>
     {
-        public World Build()
+        public Planet Build()
         {
-            return new World();
+            return new Planet();
         }
 
         public void SetRelationshipDefaults()

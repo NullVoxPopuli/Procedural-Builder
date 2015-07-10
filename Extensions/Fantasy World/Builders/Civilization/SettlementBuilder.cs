@@ -1,48 +1,51 @@
-﻿using PGE.Core.Generated_Items;
+﻿using System.Collections.Generic;
+using PGE.Core.Builder;
+using PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Objects;
+using PGE.Fantasy_World.Civilization.Macro.Objects;
+using PGE.Fantasy_World.Models.Life;
 
 namespace PGE.Fantasy_World.Civilization.Macro.Builders
 {
-    public class SettlementBuilder : Builder
+    public class SettlementBuilder : IBuilder<Settlement>
     {
-        private int _population = -1;
+        private List<Humanoid> _population;
+        private List<Building> _buildings;
+        private string _government = "";
 
-        public override void ApplyParameters(AbstractGeneratableObject gen)
+        public Settlement Build()
         {
-            Generated = gen;
-            ApplyPopulation();
-        }
-
-        #region Environment
-
-        #region Handle Environment
-
-        #endregion
-        #region Handle Environmental Effects
-
-        #endregion
-
-        #endregion
-
-        #region Handle Population
-
-        public void SetPopulation(int population)
-        {
-            _population = population;
-        }
-
-        private void ApplyPopulation()
-        {
-            if (_population == -1)
+            return new Settlement()
             {
-                GeneratePopulation();
+                Buildings = _buildings,
+                Citizens = _population,
+                Government = _government
+            };
+        }
+
+        public void SetRelationshipDefaults()
+        {
+            if (_population == null)
+            {
+                _population = new List<Humanoid>();
             }
         }
 
-        private void GeneratePopulation()
+        public SettlementBuilder WithGovernment(string govt)
         {
-            _population = 1;
+            _government = govt;
+            return this;
         }
 
-        #endregion
+        public SettlementBuilder WithBuildings(List<Building> buildings)
+        {
+            _buildings = buildings;
+            return this;
+        }
+
+        public SettlementBuilder WithPopulation(List<Humanoid> pop)
+        {
+            _population = pop;
+            return this;
+        }
     }
 }

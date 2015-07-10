@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using PGE.Core.Generated_Items;
-using PGE.Fantasy_World.Builders.Civilization.Civilization.Objects;
-using PGE.Fantasy_World.Lifeforms.Objects;
-using PGE.Fantasy_World.Models.World;
+using PGE.Core.Models;
+using PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Objects;
+using PGE.Fantasy_World.Models.Life;
 
 namespace PGE.Fantasy_World.Civilization.Macro.Objects
 {
-    public class Settlement : AbstractGeneratableObject
+    public class Settlement : Model
     {
         public List<Humanoid> Citizens;
         public List<Building> Buildings;
