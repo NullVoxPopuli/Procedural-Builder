@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PGE.Core.Models;
 using PGE.Core.Statistics;
-using PGE.Fantasy_World.Civilization.Macro.Objects;
-using PGE.Fantasy_World.World.Builders;
+using PGE.Fantasy_World.Models.Civilization;
 
 namespace PGE.Fantasy_World.Models.World
 {

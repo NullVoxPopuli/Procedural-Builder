@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using PGE.Core.Builder;
-using PGE.Fantasy_World.Civilization.Macro.Objects;
+using PGE.Fantasy_World.Models.Civilization;
 using PGE.Fantasy_World.Models.World;
 
-namespace PGE.Fantasy_World.World.Builders
+namespace PGE.Fantasy_World.Builders.World
 {
     public class RegionBuilder : IBuilder<Region>
     {

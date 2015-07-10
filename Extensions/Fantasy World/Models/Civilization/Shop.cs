@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Objects
+namespace PGE.Fantasy_World.Models.Civilization
 {
     public class Shop : Building
     {

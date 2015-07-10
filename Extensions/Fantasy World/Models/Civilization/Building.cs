@@ -1,7 +1,7 @@
 ﻿using PGE.Core.Models;
 using PGE.Fantasy_World.Models.Life;
 
-namespace PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Objects
+namespace PGE.Fantasy_World.Models.Civilization
 {
     public class Building : Model
     {

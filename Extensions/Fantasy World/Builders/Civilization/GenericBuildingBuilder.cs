@@ -1,5 +1,5 @@
 ﻿using PGE.Core.Builder;
-using PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Objects;
+using PGE.Fantasy_World.Models.Civilization;
 using PGE.Fantasy_World.Models.Life;
 
 namespace PGE.Fantasy_World.Builders.Civilization

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using PGE.Core.Statistics;
-using PGE.Fantasy_World.Builders.Civilization.Civilization.Civilization.Objects;
+using PGE.Fantasy_World.Models.Civilization;
 
 namespace PGE.Fantasy_World.Builders.Civilization
 {
