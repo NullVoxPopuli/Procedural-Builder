@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PGE.Core.Generator;
-using PGE.Fantasy_World.Civilization.Buildings.Generation_Parameters;
-using PGE.Fantasy_World.Civilization.Buildings.Objects;
-using PGE.Fantasy_World.Lifeforms.Generation_Parameters;
+using PGE.Fantasy_World.Builders.Civilization.Civilization.Builders;
+using PGE.Fantasy_World.Builders.Civilization.Civilization.Objects;
+using PGE.Fantasy_World.Lifeforms.Builders;
 using PGE.Fantasy_World.Lifeforms.Objects;
 
 namespace PGE.Fantasy_World.Tests

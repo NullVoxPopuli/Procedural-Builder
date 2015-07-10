@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PGE.Core.Generator;
-using PGE.Fantasy_World.Lifeforms.Generation_Parameters;
+using PGE.Fantasy_World.Lifeforms.Builders;
 using PGE.Fantasy_World.Lifeforms.Micro.Objects;
 using PGE.Fantasy_World.Lifeforms.Objects;
 

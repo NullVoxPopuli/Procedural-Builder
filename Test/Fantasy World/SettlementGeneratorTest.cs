@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PGE.Core.Generator;
-using PGE.Fantasy_World.Civilization.Macro.Generation_Parameters;
+using PGE.Fantasy_World.Civilization.Macro.Builders;
 using PGE.Fantasy_World.Civilization.Macro.Objects;
 
 namespace PGE.Fantasy_World.Tests
