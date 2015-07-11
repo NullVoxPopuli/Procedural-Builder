@@ -1,4 +1,5 @@
-﻿using PGE.Core.Models;
+﻿using System;
+using PGE.Core.Models;
 
 namespace PGE.Core.Builder
 {
@@ -7,6 +8,6 @@ namespace PGE.Core.Builder
     {
         T Build();
         void SetRelationshipDefaults();
-        void DoProceduralGeneration(Model model);
+        T ProceduralBuild(Model from, Type until = null);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using PGE.Core.Builder;
+using PGE.Core.Models;
 using PGE.Core.Statistics;
 using PGE.Fantasy_World.Models.World;
 
@@ -120,6 +121,10 @@ namespace PGE.Fantasy_World.Builders.World
             {
                 _regions = new List<Region>();
             }
+        }
+
+        public void ProcedurallyGenerateFrom(Planet planet)
+        {
         }
 
         public void DoProceduralGeneration(Planet model)
