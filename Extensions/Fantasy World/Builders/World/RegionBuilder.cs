@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using PGE.Core.Builder;
 using PGE.Core.Models;
+using PGE.Core.Statistics;
+using PGE.Fantasy_World.Builders.Civilization;
 using PGE.Fantasy_World.Models.Civilization;
 using PGE.Fantasy_World.Models.World;
 
@@ -18,8 +20,11 @@ namespace PGE.Fantasy_World.Builders.World
         private double _averageTemperature = Constants.DefaultDouble;
         private double _averageRainfall = Constants.DefaultDouble;
 
+        // Flat Building
         public Region Build()
         {
+            SetRelationshipDefaults();
+
             return new Region()
             {
                 AverageRainfall = _averageRainfall,
@@ -41,36 +46,103 @@ namespace PGE.Fantasy_World.Builders.World
             }
         }
 
-        // PROCEDURAL HELPERS
+        // Procedural Building
         public Region ProceduralBuild(Model from, Type until = null)
         {
             // Basic Checking
             if (from == null || from.GetType() != typeof(Landmass)) throw new Exception();
-            if (until != null) if (typeof (Region) == until) return null;
 
             var landmass = (Landmass) from;
-
-            _windAmount = GenerateWindAmount(
-                variability: landmass.RegionDiversity);
-
-            _averageRainfall = GenerateAverageRainfall(
-                averageRainfall: landmass.AverageRainfall,
-                variability: landmass.RegionDiversity,
-                proximityToEquator: landmass.ProximityToEquator);
-
-            _averageTemperature = GenerateAverageTemperature(
-                averageHoursOfSunlight: landmass.AverageHoursOfAvailableSunlight,
-                averageSunlightConcentration: landmass.AverageSunlightConcentration,
-                averageTemperature: landmass.AverageTemperature,
+            
+            _stabilityOfClimate = GenerateStabilityOfClimate(
+                sizeOfRegion: landmass.ContinentSize, // Need something else for this, probably
                 proximityToEquator: landmass.ProximityToEquator,
                 variability: landmass.RegionDiversity);
 
             _hoursOfAvailableSunlight = GenerateHoursOfAvailableSunlight(
                 averageHoursOfSunlight: landmass.AverageHoursOfAvailableSunlight,
                 proximityToEquator: landmass.ProximityToEquator,
-                variability: landmass.RegionDiversity);
+                variability: landmass.RegionDiversity); // This is a regional average and is not governed by continental weather
 
-            return Build();
+            _windAmount = GenerateWindAmount(
+                variability: _stabilityOfClimate);
+
+            _averageRainfall = GenerateAverageRainfall(
+                averageRainfall: landmass.AverageRainfall,
+                proximityToEquator: landmass.ProximityToEquator,
+                variability: _stabilityOfClimate);
+
+            _sunlightConcentration = GenerateSunlightConcentration(
+                proximityToEquator: landmass.ProximityToEquator,
+                averageRainfall: _averageRainfall,
+                variability: _stabilityOfClimate);
+
+            _soilNitrogenContent = GenerateSoilNitrogenContent(
+                rainFall: _averageRainfall,
+                temperature: _averageTemperature,
+                variability: _stabilityOfClimate);
+
+            _averageTemperature = GenerateAverageTemperature(
+                averageHoursOfSunlight: landmass.AverageHoursOfAvailableSunlight,
+                averageSunlightConcentration: landmass.AverageSunlightConcentration,
+                averageTemperature: landmass.AverageTemperature,
+                proximityToEquator: landmass.ProximityToEquator,
+                variability: landmass.RegionDiversity); // This is a regional average and is not governed by continental weather
+
+            _soilNitrogenContent = GenerateSoilNitrogenContent(
+                rainFall: _averageRainfall,
+                temperature: _averageTemperature,
+                variability: _stabilityOfClimate);
+
+            // Finally, build the Region and then use it to drive Settlement Procedural Generation
+            var generatedRegion = Build();
+            generatedRegion.Settlements = GenerateSettlements(generatedRegion, until);
+
+            return generatedRegion;
+        }
+
+        private static List<Settlement> GenerateSettlements(Region generatedRegion, Type until)
+        {
+            var settlements = new List<Settlement>();
+
+            if (until != null)
+            {
+                if (typeof(Settlement) == until) return settlements;
+            }
+
+            var numberOfSettlements = Dice.Roll(numberOfSides:4,numberOfTimes:1); // Average of 2.5
+
+            for (var i = 0; i < numberOfSettlements; ++i)
+            {
+                settlements.Add(new SettlementBuilder()
+                    .ProceduralBuild(generatedRegion, until));
+            }
+
+            return settlements;
+        }
+
+        private double GenerateSunlightConcentration(double proximityToEquator, double averageRainfall, double variability)
+        {
+            if (_sunlightConcentration != Constants.DefaultInt) return _sunlightConcentration;
+
+            // TODO: How do we implement this...?
+            return Core.Statistics.Gaussian.GetGaussianRandom(mean: proximityToEquator - averageRainfall, standardDeviation: variability);
+        }
+
+        private double GenerateSoilNitrogenContent(double rainFall, double temperature, double variability)
+        {
+            if (_soilNitrogenContent != Constants.DefaultInt) return _soilNitrogenContent;
+
+            // TODO: How do we implement this...?
+            return Core.Statistics.Gaussian.GetGaussianRandom(mean: rainFall + temperature, standardDeviation: variability);
+        }
+
+        private double GenerateStabilityOfClimate(double sizeOfRegion, double proximityToEquator, double variability)
+        {
+            if (_stabilityOfClimate != Constants.DefaultInt) return _stabilityOfClimate;
+
+            // TODO: How do we implement this...?
+            return Core.Statistics.Gaussian.GetGaussianRandom(mean: variability, standardDeviation: variability);
         }
 
         private int GenerateHoursOfAvailableSunlight(int averageHoursOfSunlight, double proximityToEquator, double variability)
@@ -102,10 +174,9 @@ namespace PGE.Fantasy_World.Builders.World
         {
             if (_windAmount != Constants.DefaultDouble) return _windAmount;
 
+            // TODO: What governs wind amount?
             return Core.Statistics.Gaussian.GetGaussianRandom(mean: 0.5, standardDeviation: 0.2);
         }
-
-
 
         // FLUENT BUILDER HELPERS
         public RegionBuilder WithWindAmount(double wind)

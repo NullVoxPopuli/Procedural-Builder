@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using PGE.Core.Builder;
+using PGE.Core.Models;
 using PGE.Fantasy_World.Models.Civilization;
 using PGE.Fantasy_World.Models.Life;
 
@@ -27,6 +29,11 @@ namespace PGE.Fantasy_World.Builders.Civilization
             {
                 _population = new List<Humanoid>();
             }
+        }
+
+        public Settlement ProceduralBuild(Model @from, Type until = null)
+        {
+            throw new NotImplementedException();
         }
 
         public SettlementBuilder WithGovernment(string govt)

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Models\Life\Humanoid.cs" />
     <Compile Include="Builders\Life\HumanoidBuilder.cs" />
     <Compile Include="Models\Life\Trait.cs" />
@@ -63,7 +64,7 @@
     <Compile Include="Builders\Civilization\SettlementBuilder.cs" />
     <Compile Include="Builders\World\LandmassBuilder.cs" />
     <Compile Include="Builders\World\RegionBuilder.cs" />
-    <Compile Include="Builders\World\WorldBuilder.cs" />
+    <Compile Include="Builders\World\PlanetBuilder.cs" />
     <Compile Include="Models\World\Landmass.cs" />
     <Compile Include="Models\World\Region.cs" />
     <Compile Include="Models\World\Planet.cs" />
