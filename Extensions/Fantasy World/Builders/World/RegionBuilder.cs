@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using PGE.Core.Builder;
+using PGE.Core.Models;
 using PGE.Fantasy_World.Models.Civilization;
 using PGE.Fantasy_World.Models.World;
 
@@ -37,6 +38,11 @@ namespace PGE.Fantasy_World.Builders.World
             {
                 _settlements = new List<Settlement>();
             }
+        }
+
+        public void DoProceduralGeneration(Model model)
+        {
+            throw new System.NotImplementedException();
         }
 
         public RegionBuilder WithWindAmount(double wind)

@@ -7,37 +7,130 @@ namespace PGE.Fantasy_World.Builders.World
 {
     public class LandmassBuilder : IBuilder<Landmass>
     {
+        private int _averageHoursOfAvailableSunlight = 0;
+        private List<Region> _regions = new List<Region>();
+        private double _regionDiversity = 0.0;
+        private double _proximityToEquator = 0.0;
+        private string _name = "";
+        private int _maximumNumberOfRegions = 0;
+        private string _description = "";
+        private double _continentSize = 0.0;
+        private double _averageTemperature = 0.0;
+        private double _averageSunlightConcentration = 0.0;
+        private double _averageSoilNitrogenContent = 0.0;
+        private double _averageRainfall = 0.0;
+
+        public LandmassBuilder WithAverageHoursOfAvailableSunlight(int hours)
+        {
+            _averageHoursOfAvailableSunlight = hours;
+            return this;
+        }
+
+        public LandmassBuilder WithRegions(List<Region> regions)
+        {
+            _regions = regions;
+            return this;
+        }
+
+        public LandmassBuilder WithRegionDiversity(double diversity)
+        {
+            _regionDiversity = diversity;
+
+            return this;
+        }
+
+        public LandmassBuilder WithProximityToEquator(double prox)
+        {
+            _proximityToEquator = prox;
+            return this;
+        }
+
+        public LandmassBuilder WithMaximumNumberOfRegions(int number)
+        {
+            _maximumNumberOfRegions = number;
+            return this;
+        }
+
+        public LandmassBuilder WithName(string name)
+        {
+            _name = name;
+            return this;
+        }
+
+        public LandmassBuilder WithDescription(string desc)
+        {
+            _description = desc;
+            return this;
+        }
+
+        public LandmassBuilder WithContinentSize(double size)
+        {
+            _continentSize = size;
+            return this;
+        }
+
+        public LandmassBuilder WithAverageTemperature(double temp)
+        {
+            _averageTemperature = temp;
+            return this;
+        }
+
+        public LandmassBuilder WithAverageSunlightConcentration(double concentration)
+        {
+            _averageSunlightConcentration = concentration;
+            return this;
+        }
+
+        public LandmassBuilder WithAverageSoilNitrogenContent(double average)
+        {
+            _averageSoilNitrogenContent = average;
+            return this;
+        }
+
+        public LandmassBuilder WithAverageRainfall(double average)
+        {
+            _averageRainfall = average;
+            return this;
+        }
+
         public Landmass Build()
         {
+            SetRelationshipDefaults();
+
             return new Landmass()
             {
-                AverageHoursOfAvailableSunlight = 0,
-                AverageRainfall = 0.0,
-                AverageSoilNitrogenContent = 0.0,
-                AverageSunlightConcentration = 0.0,
-                AverageTemperature = 0.0,
-                ContinentSize = 0.0,
-                Description = "",
-                MaximumNumberOfRegions = 0,
-                Name = "",
-                ProximityToEquator = 0.0,
-                RegionDiversity = 0.0,
-                Regions = new List<Region>()
+                AverageHoursOfAvailableSunlight = _averageHoursOfAvailableSunlight,
+                AverageRainfall = _averageRainfall,
+                AverageSoilNitrogenContent = _averageSoilNitrogenContent,
+                AverageSunlightConcentration = _averageSunlightConcentration,
+                AverageTemperature = _averageTemperature,
+                ContinentSize = _continentSize,
+                Description = _description,
+                MaximumNumberOfRegions = _maximumNumberOfRegions,
+                Name = _name,
+                ProximityToEquator = _proximityToEquator,
+                RegionDiversity = _regionDiversity,
+                Regions = _regions
             };
         }
 
         public void SetRelationshipDefaults()
         {
-            throw new System.NotImplementedException();
+            if (_regions == null)
+            {
+                _regions = new List<Region>();
+            }
         }
 
-        //public override void ApplyParameters(AbstractGeneratableObject gen)
-        //{
-        //    Generated = gen;
-        //
-        //    ((Landmass)Generated).GenerateRegions();
-        //}
-        //
+        public void DoProceduralGeneration(Planet model)
+        {
+            if (_regions == null)
+            {
+                _ //asdf
+                return;
+            }
+        }
+
         //public void CalculateLocationAndSize()
         //{
         //    ((Landmass)Generated).ContinentSize = Gaussian.GetGaussianRandom(
