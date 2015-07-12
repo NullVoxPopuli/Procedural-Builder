@@ -35,21 +35,5 @@ namespace PGE.Fantasy_World.Models.World
         public double AverageSoilNitrogenContent;
         public int AverageHoursOfAvailableSunlight;
         public double AverageSunlightConcentration;
-
-        //public void GenerateRegions()
-        //{
-        //    var numberOfRegions = Dice.Roll((int)(MaximumNumberOfRegions * RegionDiversity));
-        //
-        //    // Prepare the basic Build Parameters for the Landmasses using our statistics
-        //    var generator = new Generator<Region>();
-        //    var regionParams  = new RegionBuilder();
-        //    generator.Add(regionParams);
-        //
-        //    for (var regionIndex = 0; regionIndex < numberOfRegions; ++regionIndex)
-        //    {
-        //        // Specify the Region Parameters here (Rainfall, Temperature)
-        //        Regions.Add(generator.Build());
-        //    }
-        //}
     }
 }
