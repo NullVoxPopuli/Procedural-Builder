@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Math\ContinentalMathematics.cs" />
+    <Compile Include="Math\PlanetaryMathematics.cs" />
     <Compile Include="Models\Life\Humanoid.cs" />
     <Compile Include="Builders\Life\HumanoidBuilder.cs" />
     <Compile Include="Models\Life\Trait.cs" />

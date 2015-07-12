@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PGE.Core.Builder;
 using PGE.Core.Models;
 using PGE.Core.Statistics;
+using PGE.Fantasy_World.Math;
 using PGE.Fantasy_World.Models.World;
 
 namespace PGE.Fantasy_World.Builders.World
@@ -55,34 +56,38 @@ namespace PGE.Fantasy_World.Builders.World
         {
             var planet = (Planet) from;
 
+            var atmosphericThermalConductivity = PlanetaryMathematics.ThermalConductivity(
+                nitrogenContent: planet.AtmosphericNitrogenPercent,
+                oxygenContent: planet.AtmosphericOxygenPercent,
+                carbonDioxideContent: planet.AtmosphericCarbonDioxidePercent);
+
+            var percentageOfDay = PlanetaryMathematics.CalculatePercentageOfDay(
+                solarProximity: planet.SolarProximityRelativeToEarth,
+                polarTilt: planet.PolarTilt,
+                continentalProximityToEquator: _proximityToEquator,
+                orbitalSpeed: planet.OrbitalSpeedRelativeToEarth);
+
             _averageTemperature = GenerateAverageTemperature(
-                percentageOfDay: 0,
-                nitrogen: planet.AtmosphericNitrogenPercent,
-                oxygen: planet.AtmosphericOxygenPercent,
-                cardonDioxide: planet.AtmosphericCarbonDioxidePercent,
+                percentageOfDay: percentageOfDay,
+                atmosphericThermalConductivity: atmosphericThermalConductivity,
                 size: planet.RadiusRelativeToEarth,
                 solarProximity: planet.SolarProximityRelativeToEarth,
                 rainfall: _averageRainfall);
+
+            return Build();
         }
 
-
-        public double GenerateAverageTemperature(double percentageOfDay, double nitrogen, double oxygen, 
-            double cardonDioxide, double size, double solarProximity, double rainfall)
+        public double GenerateAverageTemperature(double percentageOfDay, double atmosphericThermalConductivity, 
+            double size, double solarProximity, double rainfall)
         {
             if (_averageTemperature != Constants.DefaultDouble) return _averageTemperature;
 
-            var atmosphereCoefficient = 1.0; // TBD 
-            var proximityCoefficient = 1.0;  // TBD 
-            var rainfallCoefficient = 1.0;   // TBD 
-            var sizeCoefficient = 1.0;       // TBD 
-
-            var atmosphereEffect = 1.0 * cardonDioxide - 0.01 * oxygen - 1.0 * nitrogen;
-
-            return atmosphereCoefficient*atmosphereCoefficient
-                   + sizeCoefficient*size
-                   + rainfallCoefficient*rainfall
-                   + proximityCoefficient*percentageOfDay*solarProximity;
-
+            return ContinentalMathematics.AverageTemperature(
+                atmosphericThermalConductivity: atmosphericThermalConductivity,
+                continentSize: size,
+                continentRainfall: rainfall,
+                percentageOfDay: percentageOfDay,
+                solarProximity: solarProximity);
         }
 
         public LandmassBuilder WithAverageHoursOfAvailableSunlight(int hours)
