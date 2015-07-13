@@ -1,4 +1,6 @@
-﻿using PGE.Core.Builder;
+﻿using System;
+using PGE.Core.Builder;
+using PGE.Core.Models;
 using PGE.Fantasy_World.Models.Civilization;
 using PGE.Fantasy_World.Models.Life;
 
@@ -28,6 +30,11 @@ namespace PGE.Fantasy_World.Builders.Civilization
             {
                 _owner = new Humanoid();
             }
+        }
+
+        public Building ProceduralBuild(Model @from, Type until = null)
+        {
+            throw new NotImplementedException();
         }
 
         public GenericBuildingBuilder WithOwner(Humanoid owner)

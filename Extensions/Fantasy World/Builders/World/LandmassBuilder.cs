@@ -56,6 +56,7 @@ namespace PGE.Fantasy_World.Builders.World
         {
             var planet = (Planet) from;
 
+            // Calculated Intermediaries
             var atmosphericThermalConductivity = PlanetaryMathematics.ThermalConductivity(
                 nitrogenContent: planet.AtmosphericNitrogenPercent,
                 oxygenContent: planet.AtmosphericOxygenPercent,
@@ -67,6 +68,20 @@ namespace PGE.Fantasy_World.Builders.World
                 continentalProximityToEquator: _proximityToEquator,
                 orbitalSpeed: planet.OrbitalSpeedRelativeToEarth);
 
+            var continentalSolarProximity = ContinentalMathematics.SolarProximity(
+                planetSolarProximity: planet.SolarProximityRelativeToEarth,
+                polarTilt: planet.PolarTilt,
+                day: planet.DayOfYear,
+                continentalProximityToEquator: _proximityToEquator);
+
+            // Actual Calculations
+            _averageRainfall = GenerateAverageRainfall(
+                atmosphericOxygen: planet.AtmosphericOxygenPercent,
+                continentalSolarProximity: planet.SolarProximityRelativeToEarth,
+                size: planet.RadiusRelativeToEarth,
+                amountOfWater: planet.AmountOfWaterRelativeToEarth,
+                landWaterRatio: planet.LandWaterRatio);
+
             _averageTemperature = GenerateAverageTemperature(
                 percentageOfDay: percentageOfDay,
                 atmosphericThermalConductivity: atmosphericThermalConductivity,
@@ -75,6 +90,11 @@ namespace PGE.Fantasy_World.Builders.World
                 rainfall: _averageRainfall);
 
             return Build();
+        }
+
+        private double GenerateAverageRainfall(double atmosphericOxygen, double continentalSolarProximity, double size, double amountOfWater, double landWaterRatio)
+        {
+            return 0.0;
         }
 
         public double GenerateAverageTemperature(double percentageOfDay, double atmosphericThermalConductivity, 

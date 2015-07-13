@@ -21,5 +21,11 @@ namespace PGE.Fantasy_World.Math
                    + rainfallCoefficient * continentRainfall
                    + proximityCoefficient * percentageOfDay * solarProximity;
         }
+
+        public static double SolarProximity(double planetSolarProximity, double polarTilt, double day, double continentalProximityToEquator)
+        {
+            // Orbital nonsense
+            return 0.0;
+        }
     }
 }

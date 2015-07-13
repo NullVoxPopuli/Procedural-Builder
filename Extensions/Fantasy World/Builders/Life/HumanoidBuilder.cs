@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PGE.Core.Builder;
+using PGE.Core.Models;
 using PGE.Fantasy_World.Models.Life;
 
 namespace PGE.Fantasy_World.Builders.Life
@@ -13,6 +14,11 @@ namespace PGE.Fantasy_World.Builders.Life
         }
 
         public void SetRelationshipDefaults()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Humanoid ProceduralBuild(Model @from, Type until = null)
         {
             throw new NotImplementedException();
         }
