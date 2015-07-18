@@ -28,26 +28,9 @@ namespace PGE.Fantasy_World.Models.World
         // 1.0 is a single season
         public double StabilityOfClimate;
 
-        //public void GenerateSettlements()
-        //{
-        //    // Prepare the basic Build Parameters for the Settlements using our statistics
-        //    var settlementGenerator = new Generator<Settlement>();
-        //    var settlementParams = new RegionBuilder();
-        //    settlementGenerator.Add(settlementParams);
-        //
-        //    var numberOfSettlements = CalculateNumberOfSettlements();
-        //
-        //    for (var regionIndex = 0; regionIndex < numberOfSettlements; ++regionIndex)
-        //    {
-        //        Settlements.Add(settlementGenerator.Build());
-        //    }
-        //}
-
-        private int CalculateNumberOfSettlements()
+        public void ProceduralBuild(Model from, Type until = null)
         {
-            // Need to infer based on the Environment's hospitability and the size of the Region
-
-            return Dice.Roll(4);
+            // Procedurally generate here
         }
     }
 }

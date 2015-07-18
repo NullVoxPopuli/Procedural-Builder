@@ -8,6 +8,9 @@ namespace PGE.Fantasy_World.Math
 {
     public static class PlanetaryMathematics
     {
+        // Equation for Ellipse
+        // (1/majorAxis²)*(x-xAxisOffset)²+(1/minorAxis²)*(y-yAxisOffset)² = 1
+
         public static double ThermalConductivity(double nitrogenContent, double oxygenContent, double carbonDioxideContent)
         {
             var nitrogenCoefficient = 0.32;

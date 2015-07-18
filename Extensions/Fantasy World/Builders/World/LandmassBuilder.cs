@@ -44,70 +44,23 @@ namespace PGE.Fantasy_World.Builders.World
             };
         }
 
+        public Landmass Build(GeneratedModel @from, Type until = null)
+        {
+            var resultingLandmass = Build();
+
+            if (from.GetType() == typeof(Planet))
+            {
+                resultingLandmass.ProceduralBuild(from: from, until: until);
+            }
+            return resultingLandmass;
+        }
+
         public void SetRelationshipDefaults()
         {
             if (_regions == null)
             {
                 _regions = new List<Region>();
             }
-        }
-
-        public Landmass ProceduralBuild(GeneratedModel from, Type until = null)
-        {
-            var planet = (Planet) from;
-
-            // Calculated Intermediaries
-            var atmosphericThermalConductivity = PlanetaryMathematics.ThermalConductivity(
-                nitrogenContent: planet.AtmosphericNitrogenPercent,
-                oxygenContent: planet.AtmosphericOxygenPercent,
-                carbonDioxideContent: planet.AtmosphericCarbonDioxidePercent);
-
-            var percentageOfDay = PlanetaryMathematics.CalculatePercentageOfDay(
-                solarProximity: planet.SolarProximityRelativeToEarth,
-                polarTilt: planet.PolarTilt,
-                continentalProximityToEquator: _proximityToEquator,
-                orbitalSpeed: planet.OrbitalSpeedRelativeToEarth);
-
-            var continentalSolarProximity = ContinentalMathematics.SolarProximity(
-                planetSolarProximity: planet.SolarProximityRelativeToEarth,
-                polarTilt: planet.PolarTilt,
-                day: planet.DayOfYear,
-                continentalProximityToEquator: _proximityToEquator);
-
-            // Actual Calculations
-            _averageRainfall = GenerateAverageRainfall(
-                atmosphericOxygen: planet.AtmosphericOxygenPercent,
-                continentalSolarProximity: planet.SolarProximityRelativeToEarth,
-                size: planet.RadiusRelativeToEarth,
-                amountOfWater: planet.AmountOfWaterRelativeToEarth,
-                landWaterRatio: planet.LandWaterRatio);
-
-            _averageTemperature = GenerateAverageTemperature(
-                percentageOfDay: percentageOfDay,
-                atmosphericThermalConductivity: atmosphericThermalConductivity,
-                size: planet.RadiusRelativeToEarth,
-                solarProximity: planet.SolarProximityRelativeToEarth,
-                rainfall: _averageRainfall);
-
-            return Build();
-        }
-
-        private double GenerateAverageRainfall(double atmosphericOxygen, double continentalSolarProximity, double size, double amountOfWater, double landWaterRatio)
-        {
-            return 0.0;
-        }
-
-        public double GenerateAverageTemperature(double percentageOfDay, double atmosphericThermalConductivity, 
-            double size, double solarProximity, double rainfall)
-        {
-            if (_averageTemperature != Constants.DefaultDouble) return _averageTemperature;
-
-            return ContinentalMathematics.AverageTemperature(
-                atmosphericThermalConductivity: atmosphericThermalConductivity,
-                continentSize: size,
-                continentRainfall: rainfall,
-                percentageOfDay: percentageOfDay,
-                solarProximity: solarProximity);
         }
 
         public LandmassBuilder WithAverageHoursOfAvailableSunlight(int hours)

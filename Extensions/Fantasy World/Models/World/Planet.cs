@@ -1,7 +1,9 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using PGE.Core.Models;
 using PGE.Core.Statistics;
+using PGE.Fantasy_World.Builders.World;
 
 namespace PGE.Fantasy_World.Models.World
 {
@@ -36,5 +38,21 @@ namespace PGE.Fantasy_World.Models.World
 
         // Assumptions: Day Zero is when a positive polar tilt is exactly normal to the orbital line
         public double DayOfYear { get; private set; }
+
+
+        public void ProceduralBuild(Type until = null)
+        {
+            if (Continents.Count == 0)
+            {
+                var numContinents = Dice.Roll(numberOfSides: 4, numberOfTimes: 2);
+                
+                for (var cont = 0; cont < numContinents; ++cont)
+                {
+                    var continent = new LandmassBuilder().Build();
+                    continent.ProceduralBuild(from: this, until: until);
+                    Continents.Add(continent);
+                }
+            }
+        }
     }
 }

@@ -23,6 +23,11 @@ namespace PGE.Fantasy_World.Builders.Civilization
             };
         }
 
+        public Settlement Build(Model @from, Type until = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetRelationshipDefaults()
         {
             if (_population == null)

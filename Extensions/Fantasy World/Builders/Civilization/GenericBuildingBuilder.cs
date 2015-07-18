@@ -24,6 +24,11 @@ namespace PGE.Fantasy_World.Builders.Civilization
             };
         }
 
+        public Building Build(Model @from, Type until = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetRelationshipDefaults()
         {
             if (_owner == null)

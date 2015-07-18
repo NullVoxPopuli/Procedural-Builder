@@ -7,7 +7,7 @@ namespace PGE.Core.Builder
     public interface IBuilder<T>
     {
         T Build();
+        T Build(GeneratedModel from, System.Type until = null);
         void SetRelationshipDefaults();
-        T ProceduralBuild(GeneratedModel from, Type until = null);
     }
 }

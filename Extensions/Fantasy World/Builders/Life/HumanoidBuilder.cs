@@ -13,6 +13,11 @@ namespace PGE.Fantasy_World.Builders.Life
             throw new NotImplementedException();
         }
 
+        public Humanoid Build(Model @from, Type until = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetRelationshipDefaults()
         {
             throw new NotImplementedException();

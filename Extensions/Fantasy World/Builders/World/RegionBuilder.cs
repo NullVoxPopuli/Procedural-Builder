@@ -38,6 +38,17 @@ namespace PGE.Fantasy_World.Builders.World
             };
         }
 
+        public Region Build(Model @from, Type until = null)
+        {
+            var resultingRegion = Build();
+
+            if (from.GetType() == typeof(Landmass))
+            {
+                resultingRegion.ProceduralBuild(from: from, until: until);
+            }
+            return resultingRegion;
+        }
+
         public void SetRelationshipDefaults()
         {
             if (_settlements == null)
