@@ -31,7 +31,7 @@ namespace PGE.Fantasy_World.Builders.Civilization
             }
         }
 
-        public Settlement ProceduralBuild(Model @from, Type until = null)
+        public Settlement ProceduralBuild(GeneratedModel @from, Type until = null)
         {
             throw new NotImplementedException();
         }

@@ -5,7 +5,7 @@ using PGE.Core.Statistics;
 
 namespace PGE.Fantasy_World.Models.World
 {
-    public class Landmass : Model
+    public class Landmass : GeneratedModel
     {
         public List<Region> Regions;
 

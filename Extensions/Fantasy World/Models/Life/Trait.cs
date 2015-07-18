@@ -2,7 +2,7 @@
 
 namespace PGE.Fantasy_World.Models.Life
 {
-    public class Trait : Model
+    public class Trait : GeneratedModel
     {
         public void ApplyTrait(Humanoid humanoid)
         {

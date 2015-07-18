@@ -8,6 +8,6 @@ namespace PGE.Core.Builder
     {
         T Build();
         void SetRelationshipDefaults();
-        T ProceduralBuild(Model from, Type until = null);
+        T ProceduralBuild(GeneratedModel from, Type until = null);
     }
 }

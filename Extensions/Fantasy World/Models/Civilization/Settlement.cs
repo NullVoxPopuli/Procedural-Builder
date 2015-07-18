@@ -4,7 +4,7 @@ using PGE.Fantasy_World.Models.Life;
 
 namespace PGE.Fantasy_World.Models.Civilization
 {
-    public class Settlement : Model
+    public class Settlement : GeneratedModel
     {
         public List<Humanoid> Citizens;
         public List<Building> Buildings;

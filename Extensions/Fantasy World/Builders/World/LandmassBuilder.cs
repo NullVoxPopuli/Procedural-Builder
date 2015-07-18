@@ -52,7 +52,7 @@ namespace PGE.Fantasy_World.Builders.World
             }
         }
 
-        public Landmass ProceduralBuild(Model from, Type until = null)
+        public Landmass ProceduralBuild(GeneratedModel from, Type until = null)
         {
             var planet = (Planet) from;
 

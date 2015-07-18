@@ -5,7 +5,7 @@ using PGE.Core.Statistics;
 
 namespace PGE.Fantasy_World.Models.World
 {
-    public class Planet : Model
+    public class Planet : GeneratedModel
     {
         public List<Landmass> Continents;
         

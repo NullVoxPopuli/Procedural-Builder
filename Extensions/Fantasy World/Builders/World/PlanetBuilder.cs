@@ -17,7 +17,7 @@ namespace PGE.Fantasy_World.Builders.World
             throw new System.NotImplementedException();
         }
 
-        public Planet ProceduralBuild(Model @from, Type until = null)
+        public Planet ProceduralBuild(GeneratedModel @from, Type until = null)
         {
             // Planet is top-most
             throw new System.NotImplementedException();

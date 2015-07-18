@@ -9,7 +9,7 @@ using PGE.Fantasy_World.Models.Civilization;
 
 namespace PGE.Fantasy_World.Models.World
 {
-    public class Region : Model
+    public class Region : GeneratedModel
     {
         public List<Settlement> Settlements;
 

@@ -47,7 +47,7 @@ namespace PGE.Fantasy_World.Builders.World
         }
 
         // Procedural Building
-        public Region ProceduralBuild(Model from, Type until = null)
+        public Region ProceduralBuild(GeneratedModel from, Type until = null)
         {
             // Basic Checking
             if (from == null || from.GetType() != typeof(Landmass)) throw new Exception();

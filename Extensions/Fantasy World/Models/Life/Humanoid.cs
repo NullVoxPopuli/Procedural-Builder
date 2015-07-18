@@ -8,7 +8,7 @@ namespace PGE.Fantasy_World.Models.Life
     // Sexuality identification is acknowledged but beyond the scope of this project.
     public enum Sex { Male, Female }
 
-    public class Humanoid : Model
+    public class Humanoid : GeneratedModel
     {
         public Sex Sex;
 
