@@ -39,8 +39,7 @@ namespace PGE.Fantasy_World.Models.World
         // Assumptions: Day Zero is when a positive polar tilt is exactly normal to the orbital line
         public double DayOfYear { get; private set; }
 
-
-        public void ProceduralBuild(Type until = null)
+        public override void ProceduralBuild(Type until = null)
         {
             if (Continents.Count == 0)
             {
@@ -53,6 +52,12 @@ namespace PGE.Fantasy_World.Models.World
                     Continents.Add(continent);
                 }
             }
+        }
+
+        public override void ProceduralBuild(GeneratedModel @from, Type until)
+        {
+            // Since this is master, it cannot use an input
+            ProceduralBuild(until);
         }
     }
 }

@@ -10,8 +10,11 @@ namespace PGE.Fantasy_World.Builders.World
     {
         private List<Landmass> _continents;
 
+        // Generic, Non-Procedural Build
         public Planet Build()
         {
+            SetRelationshipDefaults();
+
             var planet = new Planet()
             {
                 Continents = _continents
@@ -20,16 +23,24 @@ namespace PGE.Fantasy_World.Builders.World
             return planet;
         }
 
-        // Can't build this!
-        public Planet Build(GeneratedModel @from, Type until = null)
+        // Master Procedural-Build. Starts the chain of generation here
+        public Planet Build(Type until)
         {
             var planet = Build();
 
             planet.ProceduralBuild(until);
-            
+
             return planet;
         }
 
+        // Linked Procedural Build. Continus in the chain of generation
+        public Planet Build(GeneratedModel @from, Type until = null)
+        {
+            // Since this is the head of generation, use Master-variant Build instead
+            return Build(until);
+        }
+
+        // Used for creating default object Relationships to prevent nulls
         public void SetRelationshipDefaults()
         {
             if (_continents == null)

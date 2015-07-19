@@ -23,6 +23,7 @@ namespace PGE.Fantasy_World.Builders.World
         private double _averageSoilNitrogenContent = Constants.DefaultDouble;
         private double _averageRainfall = Constants.DefaultDouble;
 
+        // Generic, Non-Procedural Build
         public Landmass Build()
         {
             SetRelationshipDefaults();
@@ -44,6 +45,16 @@ namespace PGE.Fantasy_World.Builders.World
             };
         }
 
+        // Master Procedural-Build. Starts the chain of generation here
+        public Landmass Build(Type until)
+        {
+            var landmass = Build();
+            landmass.ProceduralBuild(until);
+
+            return landmass;
+        }
+
+        // Linked Procedural Build. Continus in the chain of generation
         public Landmass Build(GeneratedModel @from, Type until = null)
         {
             var resultingLandmass = Build();
@@ -55,6 +66,7 @@ namespace PGE.Fantasy_World.Builders.World
             return resultingLandmass;
         }
 
+        // Used for creating default object Relationships to prevent nulls
         public void SetRelationshipDefaults()
         {
             if (_regions == null)

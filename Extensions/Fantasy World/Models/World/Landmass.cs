@@ -38,7 +38,12 @@ namespace PGE.Fantasy_World.Models.World
         public int AverageHoursOfAvailableSunlight;
         public double AverageSunlightConcentration;
 
-        public void ProceduralBuild(Model from, Type until = null)
+        public override void ProceduralBuild(Type until)
+        {
+            
+        }
+
+        public override void ProceduralBuild(GeneratedModel from, Type until = null)
         {
             var planet = (Planet)from;
 
