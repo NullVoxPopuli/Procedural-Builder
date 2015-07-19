@@ -24,7 +24,12 @@ namespace PGE.Fantasy_World.Builders.Civilization
             };
         }
 
-        public Building Build(Model @from, Type until = null)
+        public Building Build(Type until)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Building Build(GeneratedModel @from, Type until = null)
         {
             throw new NotImplementedException();
         }
@@ -35,11 +40,6 @@ namespace PGE.Fantasy_World.Builders.Civilization
             {
                 _owner = new Humanoid();
             }
-        }
-
-        public Building ProceduralBuild(Model @from, Type until = null)
-        {
-            throw new NotImplementedException();
         }
 
         public GenericBuildingBuilder WithOwner(Humanoid owner)

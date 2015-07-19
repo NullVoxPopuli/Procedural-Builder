@@ -54,6 +54,7 @@ namespace PGE.Fantasy_World.Models.World
             }
         }
 
+        // Linked Procedural Build. Continus in the chain of generation
         public override void ProceduralBuild(GeneratedModel @from, Type until)
         {
             // Since this is master, it cannot use an input

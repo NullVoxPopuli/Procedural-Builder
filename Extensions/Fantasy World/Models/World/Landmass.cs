@@ -38,11 +38,13 @@ namespace PGE.Fantasy_World.Models.World
         public int AverageHoursOfAvailableSunlight;
         public double AverageSunlightConcentration;
 
+        // Master Procedural-Build. Starts the chain of generation here
         public override void ProceduralBuild(Type until)
         {
             
         }
 
+        // Linked Procedural Build. Continus in the chain of generation
         public override void ProceduralBuild(GeneratedModel from, Type until = null)
         {
             var planet = (Planet)from;

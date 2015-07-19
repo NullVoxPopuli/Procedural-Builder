@@ -4,10 +4,10 @@ namespace PGE.Core.Models
 {
     public abstract class GeneratedModel
     {
-        public String Name;
-        public String Description;
-
+        // Master Procedural-Build. Starts the chain of generation here
         public abstract void ProceduralBuild(Type until);
+
+        // Linked Procedural Build. Continues in the chain of generation
         public abstract void ProceduralBuild(GeneratedModel from, Type until);
     }
 }

@@ -23,7 +23,12 @@ namespace PGE.Fantasy_World.Builders.Civilization
             };
         }
 
-        public Settlement Build(Model @from, Type until = null)
+        public Settlement Build(Type until)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Settlement Build(GeneratedModel @from, Type until = null)
         {
             throw new NotImplementedException();
         }
@@ -34,11 +39,6 @@ namespace PGE.Fantasy_World.Builders.Civilization
             {
                 _population = new List<Humanoid>();
             }
-        }
-
-        public Settlement ProceduralBuild(GeneratedModel @from, Type until = null)
-        {
-            throw new NotImplementedException();
         }
 
         public SettlementBuilder WithGovernment(string govt)

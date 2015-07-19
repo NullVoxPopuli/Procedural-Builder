@@ -50,7 +50,6 @@
     <Compile Include="Math\PlanetaryMathematics.cs" />
     <Compile Include="Models\Life\Humanoid.cs" />
     <Compile Include="Builders\Life\HumanoidBuilder.cs" />
-    <Compile Include="Models\Life\Trait.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Builders\Civilization\ReligiousBuildingBuilder.cs" />
     <Compile Include="Builders\Civilization\ResidenceBuilder.cs" />

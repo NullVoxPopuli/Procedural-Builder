@@ -36,9 +36,7 @@ namespace PGE.Fantasy_World.Builders.World
                 AverageSunlightConcentration = _averageSunlightConcentration,
                 AverageTemperature = _averageTemperature,
                 ContinentSize = _continentSize,
-                Description = _description,
                 MaximumNumberOfRegions = _maximumNumberOfRegions,
-                Name = _name,
                 ProximityToEquator = _proximityToEquator,
                 RegionDiversity = _regionDiversity,
                 Regions = _regions

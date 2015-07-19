@@ -29,12 +29,13 @@ namespace PGE.Fantasy_World.Models.World
         // 1.0 is a single season
         public double StabilityOfClimate;
 
+        // Master Procedural-Build. Starts the chain of generation here
         public override void ProceduralBuild(Type until = null)
         {
             
         }
 
-        // Procedural Building
+        // Linked Procedural Build. Continus in the chain of generation
         public override void ProceduralBuild(GeneratedModel from, Type until = null)
         {
             // Basic Checking
@@ -99,7 +100,7 @@ namespace PGE.Fantasy_World.Models.World
             for (var i = 0; i < numberOfSettlements; ++i)
             {
                 settlements.Add(new SettlementBuilder()
-                    .ProceduralBuild(this, until));
+                    .Build(this, until));
             }
 
             return settlements;

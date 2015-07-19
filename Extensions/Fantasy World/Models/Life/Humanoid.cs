@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using PGE.Core.Models;
 using PGE.Fantasy_World.Builders.Life;
 
@@ -28,10 +29,6 @@ namespace PGE.Fantasy_World.Models.Life
         public double Water;
         public double Food;
 
-        // A list of different traits inherited from parents. Heredity is determined
-        // based on that trait's HereditaryNature (Dominant, Recessive, X-Only, etc)
-        public List<Trait> Traits;
-
         public Humanoid ProduceOffspring()
         {
             if (Mate == null || Sex == Sex.Male)
@@ -58,6 +55,17 @@ namespace PGE.Fantasy_World.Models.Life
         {
             // How do we handle this?
             return true;
+        }
+        // Master Procedural-Build. Starts the chain of generation here
+        public override void ProceduralBuild(Type until)
+        {
+            throw new NotImplementedException();
+        }
+
+        // Linked Procedural Build. Continues in the chain of generation
+        public override void ProceduralBuild(GeneratedModel @from, Type until)
+        {
+            throw new NotImplementedException();
         }
     }
 }
