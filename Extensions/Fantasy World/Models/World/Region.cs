@@ -27,7 +27,12 @@ namespace PGE.Fantasy_World.Models.World
         // This is used as a sort of a standard deviation used in Gaussian Random Fields
         public double StabilityOfClimate;
 
-        public void ProceduralBuild(Model from, Type until = null)
+        public override void ProceduralBuild(Type until)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void ProceduralBuild(GeneratedModel from, Type until = null)
         {
             // Basic Checking
             if (from == null || from.GetType() != typeof(Landmass)) throw new Exception();
@@ -92,7 +97,7 @@ namespace PGE.Fantasy_World.Models.World
             for (var i = 0; i < numberOfSettlements; ++i)
             {
                 settlements.Add(new SettlementBuilder()
-                    .ProceduralBuild(this, until));
+                    .Build(this, until));
             }
 
             return settlements;

@@ -38,6 +38,38 @@ namespace PGE.Fantasy_World.Models.World
 
         // Assumptions: Day Zero is when a positive polar tilt is exactly normal to the orbital line
         public double DayOfYear { get; private set; }
+        public double NumberOfDaysPerYear { get; set; }
+
+        // Coordinates
+        public double X
+        {
+            get
+            {
+                var percentageOfYear = DayOfYear/NumberOfDaysPerYear;
+                return OrbitalMajorAxis * System.Math.Cos(percentageOfYear / System.Math.PI * 180);
+            }
+            set
+            {
+                var angle = System.Math.Acos(value/OrbitalMajorAxis)*System.Math.PI/180;
+                DayOfYear = angle*NumberOfDaysPerYear;
+            }
+        }
+
+        public double Y
+        {
+            get
+            {
+                var percentageOfYear = DayOfYear / NumberOfDaysPerYear;
+                return OrbitalMinorAxis * System.Math.Sin(percentageOfYear / System.Math.PI * 180);
+            }
+            set
+            {
+                var angle = System.Math.Asin(value / OrbitalMinorAxis) * System.Math.PI / 180;
+                DayOfYear = angle * NumberOfDaysPerYear;
+            }
+        }
+
+        // :.:.:
 
         public override void ProceduralBuild(Type until = null)
         {

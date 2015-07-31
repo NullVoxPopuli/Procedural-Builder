@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PGE.Fantasy_World.Common;
 
 namespace PGE.Fantasy_World.Math
 {
@@ -29,7 +28,7 @@ namespace PGE.Fantasy_World.Math
             return 0.0;
         }
 
-        public static Point AngleOfOrbitalPoint(
+        public static void AngleOfOrbitalPoint(
             double planetarySpeed,              // Represented as angular velocity
             double majorAxis,
             double minorAxis,
