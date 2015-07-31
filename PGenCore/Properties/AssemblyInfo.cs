@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DnD Random Generator")]
+[assembly: AssemblyTitle("PGenCore")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DnD Random Generator")]
+[assembly: AssemblyProduct("PGenCore")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("308d4d3d-f0ae-4caf-a5bc-f435fc009dd4")]
+[assembly: Guid("80c16434-4f0b-4e62-b479-6e1e1a7cd0b4")]
 
 // Version information for an assembly consists of the following four values:
 //

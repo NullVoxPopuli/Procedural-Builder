@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PGE.Core.Statistics
+namespace PGenCore.Statistics
 {
     public static class Dice
     {

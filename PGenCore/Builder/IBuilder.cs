@@ -1,7 +1,7 @@
 ﻿using System;
-using PGE.Core.Models;
+using PGenCore.Models;
 
-namespace PGE.Core.Builder
+namespace PGenCore.Builder
 {
     // Factory Method For whatever generic type exists
     public interface IBuilder<T>
