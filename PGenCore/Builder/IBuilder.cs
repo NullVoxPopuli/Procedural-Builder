@@ -7,10 +7,10 @@ namespace PGenCore.Builder
     public interface IBuilder<T>
     {
         // Generic, Non-Procedural Build
-        T Build();
+        T BuildFlat();
 
-        // Master Procedural-Build. Starts the chain of generation here
-        T Build(Type until);
+        // Master Procedural-Build. Starts the chain of generation here and ends at a specified point
+        T Build(Type until = null);
 
         // Linked Procedural Build. Continus in the chain of generation
         T Build(GeneratedModel from, Type until = null);

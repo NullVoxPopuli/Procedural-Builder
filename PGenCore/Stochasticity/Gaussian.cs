@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PGenCore.Statistics
+namespace PGenCore.Stochasticity
 {
     public static class Gaussian
     {
