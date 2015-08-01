@@ -9,11 +9,13 @@ namespace PGenCore.Builder
         // Generic, Non-Procedural Build
         T BuildFlat();
 
+        T Build();
+
         // Master Procedural-Build. Starts the chain of generation here and ends at a specified point
-        T Build(Type until = null);
+        IBuilder<T> Until(Type until = null);
 
         // Linked Procedural Build. Continus in the chain of generation
-        T Build(GeneratedModel from, Type until = null);
+        IBuilder<T> Using(GeneratedModel from);
 
         // Used for creating default object Relationships to prevent nulls
         void SetRelationshipDefaults();
