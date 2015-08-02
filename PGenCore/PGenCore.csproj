@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builder\IBuilder.cs" />
+    <Compile Include="Builder\ProceduralBuilder.cs" />
     <Compile Include="Models\GeneratedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stochasticity\Dice.cs" />
