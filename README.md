@@ -1,18 +1,79 @@
-# Procedural Generation Engine (PGE)
-A procedural generation engine (Core) with an optional extension (Fantasy World). The goal of this project was to examine different uses of Factories and Gang of Four design patterns.
+# Procedural Builder Design Pattern
+A customized design pattern for use with procedural generation in .NET/C#. The basics of which are grounded in Fluent Builders.
+
+### Terminology
+In this, we refer to the current Builder/Model as the "N Link". The first link in generation is known as the "Origin", the predecessor link is known as the "N-1 Link" and the successor is known as the "N+1 link".
 
 ## Usage
-PGE is extremely easy to use in your code at the moment. It is essentially a Builder with very little additional features. Please be patient, this system is still very new and many features need to be implemented.
+The usage of ProceduralBuilder is broken down into two steps: a `ProceduralBuilder<T>` and a `GeneratedModel` of type T. The `ProceduralBuilder<T>` abstract class functions identically to a Fluent Builder except it contains three helper methods: `Using()`, `Until()`, and `Flat()`. 
+* `Using()` allows an input of a `GeneratedModel` to drive generation of the next link in procedural generation
+* `Until()` allows the specification of a specific class, whereby procedural generation will end its linking.
+* `Flat()` allows the `ProceduralBuilder<T>` to build a `GeneratedModel` without any procedural generation linking
+The `GeneratedModel` abstract class contains the virtual `ProceduralBuild()` method, which is where the N-1 link is used to drive all procedurally-generated fields. Any subclasses of `GeneratedModel` should be created here through the use of their respective `ProceduralBuilder<T>` implementations.
 
+###Example Implementation: `ProceduralBuilder<T>`
 ```C#
-var generationParameters = new GenericObjectGenerationParameters();
+public class ExampleParentBuilder : ProceduralBuilder<ExampleParent>
+{
+  private double _someValue = Constants.DefaultDouble;
+  private List<ExampleChild> _exampleChildren;
 
-var generator = new Generator<GenericObject>();
-generator.Add(generationParameters);
+  // Master Procedural-Build. Starts the chain of generation here
+  public override ExampleParent BuildInitialModel()
+  {
+    return new ExampleParent()
+    {
+      SomeValue = _someValue,
+      Children = _exampleChildren,
+    };
+  }
 
-GenericObject generatedObject = generator.Build();
+  // Used for creating default object Relationships to prevent nulls
+  public override void SetRelationshipDefaults()
+  {
+    if (_exampleChildren == null)
+    {
+      _exampleChildren = new List<ExampleChild>();
+    }
+  }
 
+  // FLUENT BUILDER HELPERS
+  public ExampleParentBuilder WithSomeValue(double value)
+  {
+    _someValue = value;
+    return this;
+  }
+  
+  public ExampleParentBuilder WithExampleChildren(List<ExampleChild> children)
+  {
+    _exampleChildren = children;
+    return this;
+  }
+}
 ```
 
-## Fantasy World
-"Fantasy World" is an extension provided as an example for PGE's capabilities. It is my attempt to procedurally generate fantasy worlds complete with vibrant histories. Characters in this world will be capable of adapting to their environments, civilizations will fall into ruins from diseases and war, and so on and so forth. This is fairly ambitious but I think it will be a lot of fun.
+###Example Implementation: `GeneratedModel`
+```C#
+public class ExampleParent : GeneratedModel
+{
+  public double SomeValue;
+  public List<ExampleChild> Children;
+  
+  public override void ProceduralBuild(GeneratedModel from, Type until = null)
+  {
+    if(from != null)
+    {
+      // Do mathematics on our fields (specifically SomeValue) using values in 'from'
+    }
+    
+    if(Children.Count == 0)
+    {
+      // Continue the chain
+      Children.Add(new ExampleChildBuilder()
+        .Using(this)
+        .Until(until)
+        .Build();
+    }
+  }
+}
+```
