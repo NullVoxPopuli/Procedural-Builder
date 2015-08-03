@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PGenCore.Models
+namespace PGenCore
 {
     public abstract class GeneratedModel
     {
