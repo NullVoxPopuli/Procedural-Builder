@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PGenCore;
+using PGenCore.Stochasticity;
 
 namespace ProceduralBuilder.Test.Objects
 {
@@ -29,6 +30,30 @@ namespace ProceduralBuilder.Test.Objects
             }
         }
 
+        // Actual Procedural Generation
+        protected override void ProcedurallyGenerate(ParentModel output)
+        {
+            if (_until != typeof(ChildModel))
+            {
+                GenerateChildren(output);
+            }
+        }
+
+        private void GenerateChildren(ParentModel output)
+        {
+            if (output.Children.Count != 0) return;
+
+            // Randomly generate 1-4 children
+            var numChildren = Dice.Roll(numberOfSides: 4, numberOfTimes: 1) + 1;
+            for (var cont = 0; cont < numChildren; ++cont)
+            {
+                output.Children.Add(new ChildBuilder()
+                    .Using(output)
+                    .Build());
+            }
+        }
+
+        // Fluent Builders
         public ParentBuilder WithRangeMultiplier(int rangeMultiplier)
         {
             _rangeMultiplier = rangeMultiplier;
