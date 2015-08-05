@@ -61,7 +61,7 @@ namespace ProceduralBuilder.Test
             Assert.IsNotNull(parent.Children);
             Assert.IsTrue(parent.Children.Count == 20);
         }
-        
+
         [TestMethod]
         public void ParentBuild_GeneratesChildrenWithMultiplier()
         {
