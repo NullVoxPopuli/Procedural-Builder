@@ -14,7 +14,8 @@ namespace ProceduralBuilder.Test.Objects
             return new ParentModel()
             {
                 Children = _children,
-                RangeMultiplier = _rangeMultiplier
+                RangeMultiplier = _rangeMultiplier,
+                IsResponsible = _isResponsible
             };
         }
 
