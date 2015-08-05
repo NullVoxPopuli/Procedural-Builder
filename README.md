@@ -9,71 +9,114 @@ The usage of ProceduralBuilder is broken down into two steps: a `ProceduralBuild
 * `Using()` allows an input of a `GeneratedModel` to drive generation of the next link in procedural generation
 * `Until()` allows the specification of a specific class, whereby procedural generation will end its linking.
 * `Flat()` allows the `ProceduralBuilder<T>` to build a `GeneratedModel` without any procedural generation linking
-The `GeneratedModel` abstract class contains the virtual `ProceduralBuild()` method, which is where the N-1 link is used to drive all procedurally-generated fields. Any subclasses of `GeneratedModel` should be created here through the use of their respective `ProceduralBuilder<T>` implementations.
 
-###Example Implementation: `ProceduralBuilder<T>`
+The `GeneratedModel` abstract class is simply a basis for driving `ProceduralBuilder<T>`. It does not contain any methods or parameters.
+
+###Example Origin Implementation: `ParentBuilder`
 ```C#
-public class ExampleParentBuilder : ProceduralBuilder<ExampleParent>
+public class ParentBuilder : ProceduralBuilder<ParentModel>
 {
-  private double _someValue = Constants.DefaultDouble;
-  private List<ExampleChild> _exampleChildren;
+    private int _rangeMultiplier = 0;
+    private List<ChildModel> _children; 
 
-  // Master Procedural-Build. Starts the chain of generation here
-  public override ExampleParent BuildInitialModel()
-  {
-    return new ExampleParent()
+    protected override ParentModel BuildInitialModel()
     {
-      SomeValue = _someValue,
-      Children = _exampleChildren,
-    };
-  }
-
-  // Used for creating default object Relationships to prevent nulls
-  public override void SetRelationshipDefaults()
-  {
-    if (_exampleChildren == null)
-    {
-      _exampleChildren = new List<ExampleChild>();
+        return new ParentModel()
+        {
+            Children = _children,
+            RangeMultiplier = _rangeMultiplier
+        };
     }
-  }
 
-  // FLUENT BUILDER HELPERS
-  public ExampleParentBuilder WithSomeValue(double value)
-  {
-    _someValue = value;
-    return this;
-  }
-  
-  public ExampleParentBuilder WithExampleChildren(List<ExampleChild> children)
-  {
-    _exampleChildren = children;
-    return this;
-  }
+    protected override void SetRelationshipDefaults()
+    {
+        if (_children == null)
+        {
+            _children = new List<ChildModel>();
+        }
+    }
+
+    // Actual Procedural Generation
+    protected override void ProcedurallyGenerate(ParentModel output)
+    {
+        if (_until != typeof(ChildModel))
+        {
+            GenerateChildren(output);
+        }
+    }
+
+    private void GenerateChildren(ParentModel output)
+    {
+        if (output.Children.Count != 0) return;
+
+        // Randomly generate 1-4 children
+        var numChildren = Dice.Roll(numberOfSides: 4, numberOfTimes: 1) + 1;
+        for (var cont = 0; cont < numChildren; ++cont)
+        {
+            output.Children.Add(new ChildBuilder()
+                .Using(output)
+                .Build());
+        }
+    }
+
+    // Fluent Builders
+    public ParentBuilder WithRangeMultiplier(int rangeMultiplier)
+    {
+        _rangeMultiplier = rangeMultiplier;
+        return this;
+    }
+
+    public ParentBuilder WithChildren(List<ChildModel> children)
+    {
+        _children = children;
+        return this;
+    }
 }
 ```
 
-###Example Implementation: `GeneratedModel`
+###Example N+1 Implementation: `ChildBuilder`
 ```C#
-public class ExampleParent : GeneratedModel
+public class ChildBuilder : ProceduralBuilder<ChildModel>
 {
-  public double SomeValue;
-  public List<ExampleChild> Children;
-  
-  public override void ProceduralBuild(GeneratedModel from, Type until = null)
-  {
-    if(from != null)
+    private int _minimum = 0;
+    private int _maximum = 0;
+
+    protected override void SetRelationshipDefaults() { }
+    protected override ChildModel BuildInitialModel()
     {
-      // Do mathematics on our fields (specifically SomeValue) using values in 'from'
+        return new ChildModel()
+        {
+            Maximum = _maximum,
+            Minimum = _minimum
+        };
     }
-    
-    if(Children.Count == 0)
+
+    // Actual Procedural Generation
+    protected override void ProcedurallyGenerate(ChildModel output)
     {
-      // Continue the chain
-      Children.Add(new ExampleChildBuilder()
-        .Using(this)
-        .Until(until)
-        .Build();
+        if (_from is ParentModel)
+        {
+            GenerateFromParent(output);
+        }
     }
-  }
+
+    private void GenerateFromParent(ChildModel output)
+    {
+        output.Minimum = ((ParentModel)_from).RangeMultiplier * 4;
+        output.Maximum = output.Minimum + 1 + Dice.Roll(4);
+    }
+
+    // Fluent Builders
+    public ChildBuilder WithMinimum(int min)
+    {
+        _minimum = min;
+        return this;
+    }
+
+    public ChildBuilder WithMaximum(int max)
+    {
+        _maximum = max;
+        return this;
+    }
 }
 ```
