@@ -9,9 +9,17 @@ using System.Threading.Tasks;
 namespace PGenCore
 {
     /// <summary>
-    /// TODO: test construction
     /// TODO: test different field retreival techniques (using fields from T, and managing in a Dictionary)
     ///  - how would we define defaults?
+    ///
+    ///
+    /// Usage:
+    ///   dynamic objectBuilder = new ObjectBuilder();
+    ///   var object = objectBuilder
+    ///     .WithObjectFieldName(appropriateValue)
+    ///     .WithObjectField(appropriateValue2)
+    ///     .Build();
+    ///
     /// </summary>
     /// <typeparam name="T">Type to Build</typeparam>
     public class DynamicBuilder<T> : DynamicObject
@@ -35,14 +43,34 @@ namespace PGenCore
         }
         #endregion
 
+        #region Utility
+
+        /// <summary>
+        /// converts FieldName to _fieldName
+        /// </summary>
+        /// <param name="publicName"></param>
+        /// <returns></returns>
+        public static string PublicNameToPrivate(string publicName)
+        {
+            var propertyLowerFirstLetterName = char.ToLower(
+                publicName[0]) + publicName.Substring(1);
+
+            var privateName = "_" + propertyLowerFirstLetterName;
+
+            return privateName;
+        }
+        #endregion
+
         #region Method is Missing? Check for With{FieldName} Pattern
 
         /// <summary>
         /// Inherited form DynamicObject.
         /// Ran before each method call.
-        /// TODO: test functionality of statically defined methods
         ///
-        /// TODO: Simplify this method
+        ///
+        /// Note: Currently only works for setting one value
+        ///  at a time.
+        ///   e.g.: instance.Object = value
         /// </summary>
         /// <param name="binder"></param>
         /// <param name="args"></param>
@@ -53,47 +81,46 @@ namespace PGenCore
              object[] args,
              out object result)
         {
-            result = this;
 
             var firstArgument = args[0];
             var methodName = binder.Name;
-            var methodPrefix = "With";
+            var propertyRootName = methodName;
 
-            if (firstArgument is bool)
+            // following the builder pattern,
+            // methods that participate in building T,
+            // return this so we can chain building methods.
+            result = this;
+
+            // for booleans, since the field / property should be named as
+            // a question, using "With" doesn't make sense.
+            // so, this logic is only needed when we are not setting a
+            // boolean field.
+            if (!(firstArgument is bool))
             {
-                methodPrefix = "";
+                // if we are not setting a bool, and we aren't starting
+                // with "With", this method is not part of the
+                // fluent builder pattern.
+                if (!methodName.Contains("With")) return false;
+                propertyRootName = methodName.Replace("With", "");
             }
 
-            if (!methodName.Contains(methodPrefix))
-            {
-                return false;
-            }
-
-            // convert the method name of pattern:
-            // With{PropertyName} to the builder fild name pattern
-            // _{propertyName}
-            var propertyRootName = methodName.Replace(methodPrefix, "");
-            var propertyLowerFirstLetterName = char.ToLower(
-                propertyRootName[0]) +
-                                               propertyRootName.Substring(1);
-
-            var builderFieldName = "_" + propertyLowerFirstLetterName;
+            // convert to _privateFieldName
+            // TODO: think about dynamicly having fields in a Dictionary,
+            //  rather than having to specify them
+            var builderFieldName = PublicNameToPrivate(propertyRootName);
 
             // find matching field name, given the method name
-            var fieldsMatchingName = FieldInformation
-                .Where(field => field.Name == builderFieldName);
+            var fieldInfo = FieldInformation
+                .FirstOrDefault(
+                    field => field.Name == builderFieldName
+                 );
 
-            // this should only be one field
-            // we are returning anyway, so even if there are
-            // somehow multiple matches, it doesn't matter.
-            foreach (var field in fieldsMatchingName)
-            {
-                // set the field to the value in args
-                field.SetValue(this, firstArgument);
-                return true;
-            }
+            // if the field was not found, abort
+            if (fieldInfo == null) return false;
 
-            return false;
+            // set the field to the value in args
+            fieldInfo.SetValue(this, firstArgument);
+            return true;
         }
 
         #endregion

@@ -43,7 +43,14 @@ namespace ProceduralBuilder.Test
         [TestMethod]
         public void MethodInvocation_OfBoolean()
         {
+            dynamic parentBuilder = new DynamicParentBuilder();
+            var parent = parentBuilder
+                .IsResponsible(true)
+                .Build();
 
+            Assert.AreEqual(
+                actual: parent.IsResponsible,
+                expected: true);
         }
     }
 }
