@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicBuilder.cs" />
     <Compile Include="ProceduralBuilder.cs" />
     <Compile Include="GeneratedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
