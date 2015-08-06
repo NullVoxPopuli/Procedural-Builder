@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PGenCore.Stochasticity
+namespace PGenCore.Stochasticity.Discrete
 {
     public static class Dice
     {

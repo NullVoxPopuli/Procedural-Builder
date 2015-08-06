@@ -5,20 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using PGenCore;
 using PGenCore.Stochasticity;
+using PGenCore.Stochasticity.Discrete;
 
 namespace ProceduralBuilder.Test.Objects
 {
     public class ParentBuilder : ProceduralBuilder<ParentModel>
     {
         private int _rangeMultiplier = 0;
-        private List<ChildModel> _children; 
+        private List<ChildModel> _children;
+        private bool _isResponsible = false;
 
         protected override ParentModel BuildInitialModel()
         {
             return new ParentModel()
             {
                 Children = _children,
-                RangeMultiplier = _rangeMultiplier
+                RangeMultiplier = _rangeMultiplier,
+                IsResponsible = _isResponsible
             };
         }
 
@@ -39,7 +42,7 @@ namespace ProceduralBuilder.Test.Objects
             }
         }
 
-        private void GenerateChildren(ParentModel output)
+        private static void GenerateChildren(ParentModel output)
         {
             if (output.Children.Count != 0) return;
 
@@ -51,19 +54,6 @@ namespace ProceduralBuilder.Test.Objects
                     .Using(output)
                     .Build());
             }
-        }
-
-        // Fluent Builders
-        public ParentBuilder WithRangeMultiplier(int rangeMultiplier)
-        {
-            _rangeMultiplier = rangeMultiplier;
-            return this;
-        }
-
-        public ParentBuilder WithChildren(List<ChildModel> children)
-        {
-            _children = children;
-            return this;
         }
     }
 }

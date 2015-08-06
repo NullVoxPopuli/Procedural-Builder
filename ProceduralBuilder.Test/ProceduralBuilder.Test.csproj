@@ -58,7 +58,7 @@
     <Compile Include="Objects\ParentModel.cs" />
     <Compile Include="GeneralTesting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DynamicBuidlderTest.cs" />
+    <Compile Include="DynamicBuilderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProceduralBuilder\ProceduralBuilder.csproj">

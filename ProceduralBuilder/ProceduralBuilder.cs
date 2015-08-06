@@ -3,14 +3,14 @@
 namespace PGenCore
 {
     // Factory Method For whatever generic type exists
-    public abstract class ProceduralBuilder<T> where T : GeneratedModel, new()
+    public abstract class ProceduralBuilder<T> : DynamicBuilder<T> where T : GeneratedModel, new()
     {
         protected GeneratedModel _from;
         protected System.Type _until;
         private bool _flat;
 
         // Generic, Non-Procedural Build
-        public T Build()
+        public override T Build()
         {
             SetRelationshipDefaults();
             var output = BuildInitialModel();
@@ -48,6 +48,6 @@ namespace PGenCore
 
         // Used for creating default object Relationships to prevent nulls
         protected abstract void ProcedurallyGenerate(T output);
-        protected abstract void SetRelationshipDefaults();
+        protected new abstract void SetRelationshipDefaults();
     }
 }
