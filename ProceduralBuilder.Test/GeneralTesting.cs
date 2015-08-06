@@ -11,7 +11,8 @@ namespace ProceduralBuilder.Test
         [TestMethod]
         public void ParentFlatBuild_LeavesChildrenEmpty()
         {
-            var parent = new ParentBuilder()
+            dynamic parentBuilder = new ParentBuilder();
+            var parent = parentBuilder
                 .Flat()
                 .Build();
 
@@ -23,7 +24,8 @@ namespace ProceduralBuilder.Test
         [TestMethod]
         public void ParentBuild_GeneratesSomeChildren()
         {
-            var parent = new ParentBuilder()
+            dynamic parentBuilder = new ParentBuilder();
+            var parent = parentBuilder
                 .Build();
 
             Assert.IsNotNull(parent);
@@ -34,7 +36,8 @@ namespace ProceduralBuilder.Test
         [TestMethod]
         public void ParentBuildUntilChild_LeavesChildrenEmpty()
         {
-            var parent = new ParentBuilder()
+            dynamic parentBuilder = new ParentBuilder();
+            var parent = parentBuilder
                 .Until(typeof (ChildModel))
                 .Build();
 
@@ -53,7 +56,8 @@ namespace ProceduralBuilder.Test
                     .Build());
             }
 
-            var parent = new ParentBuilder()
+            dynamic parentBuilder = new ParentBuilder();
+            var parent = parentBuilder
                 .WithChildren(children)
                 .Build();
 
@@ -65,10 +69,12 @@ namespace ProceduralBuilder.Test
         [TestMethod]
         public void ParentBuild_GeneratesChildrenWithMultiplier()
         {
-            var multiplier = 4;
+            const int multiplier = 4;
 
-            var parent = new ParentBuilder()
+            dynamic parentBuilder = new ParentBuilder();
+            var parent = parentBuilder
                 .WithRangeMultiplier(multiplier)
+                .IsResponsible(true)
                 .Build();
 
             Assert.IsNotNull(parent);

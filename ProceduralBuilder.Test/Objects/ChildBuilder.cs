@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PGenCore;
 using PGenCore.Stochasticity;
+using PGenCore.Stochasticity.Discrete;
 
 namespace ProceduralBuilder.Test.Objects
 {
@@ -35,21 +36,13 @@ namespace ProceduralBuilder.Test.Objects
 
         private void GenerateFromParent(ChildModel output)
         {
-            output.Minimum = ((ParentModel)_from).RangeMultiplier * 4;
+            var parent = ((ParentModel) _from);
+
+            if(parent.IsResponsible)
+            {
+                output.Minimum = parent.RangeMultiplier * 4;
+            }
             output.Maximum = output.Minimum + 1 + Dice.Roll(4);
-        }
-
-        // Fluent Builders
-        public ChildBuilder WithMinimum(int min)
-        {
-            _minimum = min;
-            return this;
-        }
-
-        public ChildBuilder WithMaximum(int max)
-        {
-            _maximum = max;
-            return this;
         }
     }
 }

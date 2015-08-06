@@ -5,7 +5,7 @@ using ProceduralBuilder.Test.Objects;
 namespace ProceduralBuilder.Test
 {
     [TestClass]
-    public class DynamicBuidlderTest
+    public class DynamicBuilderTest
     {
 
         [TestMethod]
